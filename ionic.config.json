@@ -1,0 +1,7 @@
+{
+  "name": "PulsePulse",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
