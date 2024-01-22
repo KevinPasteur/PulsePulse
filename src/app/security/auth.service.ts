@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Observable, ReplaySubject, filter, map } from "rxjs";
+import { Observable, ReplaySubject, filter, map, from, delayWhen   } from "rxjs";
 import { AuthResponse } from "./auth-response.model";
 import { HttpClient } from "@angular/common/http";
 import { User } from "./user.model";
 import { AuthRequest } from "./auth-request.model";
+import { Storage } from "@ionic/storage-angular";
 
 /***********************************************************/
 /*********!!! REPLACE BELOW WITH YOUR API URL !!! **********/
 /***********************************************************/
-const API_URL = "<REPLACE_ME>";
+const API_URL = "http://localhost:4000/api/v1";
 
 /**
  * Authentication service for login/logout.
@@ -17,10 +18,14 @@ const API_URL = "<REPLACE_ME>";
 export class AuthService {
   #auth$: ReplaySubject<AuthResponse | undefined>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private readonly storage: Storage) {
     this.#auth$ = new ReplaySubject(1);
+    this.storage.get('auth').then((auth) => {
+      // Emit the loaded value into the observable stream.
+      this.#auth$.next(auth);
+    });
     // Emit an undefined value on startup for now
-    this.#auth$.next(undefined);
+    //this.#auth$.next(undefined);
   }
 
   /**
@@ -56,11 +61,12 @@ export class AuthService {
    * @returns An `Observable` that will emit the logged in `User` object on success.
    */
   logIn$(authRequest: AuthRequest): Observable<User> {
-    const authUrl = `${API_URL}/auth`;
+    const authUrl = `${API_URL}/users/login`;
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
+      delayWhen((auth) => this.#saveAuth$(auth)),
       map((auth) => {
         this.#auth$.next(auth);
-        console.log(`User ${auth.user.name} logged in`);
+        console.log(`User ${auth.user.email} logged in`);
         return auth.user;
       })
     );
@@ -71,6 +77,17 @@ export class AuthService {
    */
   logOut(): void {
     this.#auth$.next(undefined);
+    this.storage.remove('auth');
     console.log("User logged out");
+  }
+
+  /**
+   * Persists the provided `AuthResponse` to the storage.
+   *
+   * @param auth The AuthResponse to persist
+   * @returns An `Observable` that will emit when the authentication is persisted
+   */
+  #saveAuth$(auth: AuthResponse): Observable<void> {
+    return from(this.storage.set("auth", auth));
   }
 }
