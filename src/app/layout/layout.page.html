@@ -1,0 +1,17 @@
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Test</ion-title>
+</ion-toolbar>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [tab]="tab.path" *ngFor="let tab of tabs">
+      <ion-icon [icon]="tab.icon"></ion-icon>
+      <ion-label>{{ tab.title }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
