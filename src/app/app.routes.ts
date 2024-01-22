@@ -16,7 +16,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import("./layout/layout.page").then((m) => m.LayoutPage),
-      //canActivate: [onlyAuthenticated],
+      canActivate: [onlyAuthenticated],
       children: [
       {
         path: 'community',
@@ -25,14 +25,18 @@ export const routes: Routes = [
       {
         path: 'library',
         loadComponent: () => import('./layout/library/library.page').then( m => m.LibraryPage),
-        
+
       },
     ]
   },
   {
     path: 'login',
     loadComponent: () => import('./auth/login/login.page').then( m => m.LoginPage)
+  },  {
+    path: 'profile',
+    loadComponent: () => import('./profile/profile/profile.page').then( m => m.ProfilePage)
   },
-  
-  
+
+
+
 ];
