@@ -1,4 +1,7 @@
 <div class="ion-padding">
+  <h1 class="ion-text-center">Se connecter</h1>
+
+  <h3>Connecte toi à ton compte</h3>
   <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
     <!-- Username input -->
     <ion-input label="Username" labelPlacement="floating" inputmode="text" #username="ngModel" required="true"
@@ -14,9 +17,14 @@
     <ion-text color="danger" *ngIf="password.invalid && password.touched">Password is required.</ion-text>
 
     <!-- Submit button -->
-    <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Log in</ion-button>
+    <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Se connecter</ion-button>
 
     <!-- Error message displayed if the login failed -->
     <ion-text color="danger" *ngIf="loginError">Username or password is invalid.</ion-text>
   </form>
+
+  <b class="ion-text-center">
+    <p>Tu n'as pas encore de compte ? <a routerLink="/community">Crée-en un !</a></p>
+  </b>
+
 </div>
