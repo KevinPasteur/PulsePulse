@@ -67,4 +67,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Android folder
 /android
+
+# Environment files
+src/environments/*
+!src/environments/environment.sample.ts
