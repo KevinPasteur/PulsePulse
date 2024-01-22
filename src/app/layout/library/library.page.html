@@ -1,0 +1,51 @@
+<ion-content class="ion-padding">
+  <h1>Bibliothèques</h1>
+  <ion-searchbar></ion-searchbar>
+  <ion-segment [(ngModel)]="selectedSegment">
+    <ion-segment-button value="workouts">
+      <ion-label>Mes Workouts</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="exercises">
+      <ion-label>Mes Exercices</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="selectedSegment === 'workouts'">
+    <p>Mes workouts</p>
+  </div>
+
+  <div *ngIf="selectedSegment === 'exercises'">
+    <ion-card>
+      <ion-button expand="block" class="custom-button">
+        <ion-icon name="add" slot="start"></ion-icon>
+        Créer un exercice
+      </ion-button>
+    </ion-card>
+    <ion-list>
+      <!-- Repeat this item for each exercise -->
+      <ion-item lines="none">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-thumbnail slot="start">
+                <ion-img src="path-to-your-image.png"></ion-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col>
+              <ion-label>
+                <h2>Pompes diamant</h2>
+                <p>2 x 10 Nathan</p>
+              </ion-label>
+              <ion-button>
+                <ion-icon name="play-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item>
+      <!-- Repeat ends here -->
+    </ion-list>
+  </div>
+
+
+</ion-content>
