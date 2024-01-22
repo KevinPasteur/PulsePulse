@@ -7,8 +7,10 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage-angular";
+
+import { authInterceptor } from './app/security/auth.interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -19,7 +21,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([ authInterceptor ])),
     importProvidersFrom(IonicStorageModule.forRoot()),
   ],
 });
