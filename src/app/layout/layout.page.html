@@ -1,13 +1,15 @@
-<ion-toolbar>
-  <ion-buttons slot="secondary">
-    <ion-button>
-      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  <ion-title>Test</ion-title>
-</ion-toolbar>
-
 <ion-tabs>
+  <ion-header>
+    <ion-toolbar slot="">
+      <ion-buttons slot="secondary">
+        <ion-button routerLink="/profile">
+          <ion-icon name="person-circle">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button [tab]="tab.path" *ngFor="let tab of tabs">
       <ion-icon [icon]="tab.icon"></ion-icon>

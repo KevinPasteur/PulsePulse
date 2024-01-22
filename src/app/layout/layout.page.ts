@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { book, people, personCircle } from "ionicons/icons";
 import { addIcons } from 'ionicons';
+import { RouterLink } from '@angular/router';
 
 // Custom type that represent a tab data.
 declare type PageTab = {
@@ -17,7 +18,7 @@ declare type PageTab = {
   templateUrl: './layout.page.html',
   styleUrls: ['./layout.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class LayoutPage {
   tabs: PageTab[];
@@ -30,5 +31,5 @@ export class LayoutPage {
     addIcons({personCircle});
   }
 
-  
+
 }
