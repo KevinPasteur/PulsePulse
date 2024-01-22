@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { heart, add, playCircleOutline } from "ionicons/icons";
+import { heart, add, playCircleOutline, ellipsisHorizontal } from "ionicons/icons";
 import { addIcons } from 'ionicons';
 
 @Component({
@@ -14,16 +14,10 @@ import { addIcons } from 'ionicons';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class LibraryPage {
-
   selectedSegment: string = 'workouts';
 
   constructor(private router: Router) {
-    addIcons({heart, add, playCircleOutline});
-  }
-
-  segmentChanged(event: any) {
-    const selectedValue = event.detail.value;
-
+    addIcons({heart, add, playCircleOutline, ellipsisHorizontal});
   }
 
 }

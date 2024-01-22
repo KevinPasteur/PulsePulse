@@ -21,6 +21,24 @@
       </ion-button>
     </ion-card>
     <ion-list>
+      <ion-item [button]="true">
+        <ion-thumbnail aria-hidden="true" slot="start">
+          <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-thumbnail>
+        <ion-button slot="end" id="popover-button" fill="clear">
+          <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
+                <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice</ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
       <!-- Repeat this item for each exercise -->
       <ion-item lines="none">
         <ion-grid>
