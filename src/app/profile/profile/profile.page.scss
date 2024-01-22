@@ -1,0 +1,14 @@
+ion-back-button {
+  height: auto;
+  width: auto;
+  max-width: 50px; // Ou une taille spécifique qui convient à votre design
+  max-height: 50px; // Ou une taille spécifique qui convient à votre design
+
+  ion-icon {
+    font-size: 24px; // Taille d'icône standard
+  }
+}
+
+.avatar{
+  margin: auto;
+}
