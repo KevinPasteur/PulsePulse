@@ -16,7 +16,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import("./layout/layout.page").then((m) => m.LayoutPage),
-      canActivate: [onlyAuthenticated],
+      // canActivate: [onlyAuthenticated],
       children: [
       {
         path: 'community',

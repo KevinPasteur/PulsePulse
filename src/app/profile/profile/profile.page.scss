@@ -1,14 +1,65 @@
+* {
+  font-family: "text";
+}
+
 ion-back-button {
   height: auto;
   width: auto;
-  max-width: 50px; // Ou une taille spécifique qui convient à votre design
-  max-height: 50px; // Ou une taille spécifique qui convient à votre design
-
-  ion-icon {
-    font-size: 24px; // Taille d'icône standard
-  }
+  position: relative;
+  height: 48px;
+  float: left;
+  margin-left: 16px;
+  font-family: "text";
 }
 
-.avatar{
+ion-icon {
+  font-size: 24px; // Taille d'icône standard
+}
+
+ion-button {
+  height: 48px;
+  font-family: "text";
+  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+ion-avatar {
+  width: 60px;
+  height: 60px;
+}
+
+ion-list {
+  margin-top: 2em;
+}
+
+.item-inner {
+  border-bottom: none;
+}
+@font-face {
+  font-family: "bigTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "secondTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "text";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
+h2 {
+  font-family: "secondTitle";
+  font-size: 18px;
+}
+
+.avatar {
   margin: auto;
 }
