@@ -1,3 +1,36 @@
 .custom-text-red {
   color: red;
 }
+
+.thumbnail-with-alert {
+  width: 50%;
+  position: relative;
+  display: inline-block; // Assurez-vous que le thumbnail est traité comme un bloc inline
+
+  .exercise-alert {
+    position: absolute;
+    top: 2px;  // Ajustez selon votre besoin
+    left: 2px; // Ajustez selon votre besoin
+    background-color: rgb(124, 0, 128); // Couleur de l'alerte
+    color: white; // Couleur du texte
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: small;
+    z-index: 10; // Assurez-vous qu'il apparaît par-dessus l'image
+  }
+
+  img {
+    width: 100%; // Assurez-vous que l'image remplit le thumbnail
+    height: auto;
+  }
+}
+
+ion-grid{
+  height: 100%;
+}
+ion-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -21,47 +21,57 @@
       </ion-button>
     </ion-card>
     <ion-list>
-      <ion-item [button]="true">
-        <ion-thumbnail aria-hidden="true" slot="start">
-          <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-thumbnail>
-        <ion-button slot="end" id="popover-button" fill="clear">
-          <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
-        </ion-button>
-        <ion-popover trigger="popover-button" [dismissOnSelect]="true">
-          <ng-template>
-            <ion-content>
-              <ion-list>
-                <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
-                <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice</ion-item>
-              </ion-list>
-            </ion-content>
-          </ng-template>
-        </ion-popover>
-      </ion-item>
-      <!-- Repeat this item for each exercise -->
-      <ion-item lines="none">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-thumbnail slot="start">
-                <ion-img src="path-to-your-image.png"></ion-img>
-              </ion-thumbnail>
-            </ion-col>
-            <ion-col>
-              <ion-label>
-                <h2>Pompes diamant</h2>
-                <p>2 x 10 Nathan</p>
-              </ion-label>
-              <ion-button>
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-      </ion-item>
-      <!-- Repeat ends here -->
+      <div *ngFor="let exercise of exercises">
+        <ion-item [button]="true">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="3">
+                <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
+                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                  <div class="exercise-alert"> {{ exercise.level }}</div>
+                </ion-thumbnail>
+              </ion-col>
+              <ion-col size="7">
+                <ion-row>
+                  <ion-col>
+                    <p>{{ exercise.name }}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <p>{{ exercise.sets }} x {{ exercise.repetitions }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="2">
+                <ion-row>
+                  <ion-col>
+                    <ion-button id="popover-button" fill="clear">
+                      <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
+                    </ion-button>
+                    <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+                      <ng-template>
+                        <ion-content>
+                          <ion-list>
+                            <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
+                            <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice
+                            </ion-item>
+                          </ion-list>
+                        </ion-content>
+                      </ng-template>
+                    </ion-popover>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <p>Test 2</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
     </ion-list>
   </div>
 
