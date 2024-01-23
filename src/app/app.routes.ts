@@ -36,6 +36,10 @@ export const routes: Routes = [
     path: 'profile',
     loadComponent: () => import('./profile/profile/profile.page').then( m => m.ProfilePage)
   },
+  {
+    path: 'create-exercise',
+    loadComponent: () => import('./exercises/create-exercise/create-exercise.page').then( m => m.CreateExercisePage)
+  },
 
 
 
