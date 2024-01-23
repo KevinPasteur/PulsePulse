@@ -11,7 +11,7 @@ export const onlyAuthenticated: CanActivateFn = () => {
     .isAuthenticated$()
     .pipe(
       map((isAuthenticated) =>
-        isAuthenticated ? true : router.parseUrl("/login")
+        isAuthenticated ? true : router.parseUrl("/")
       )
     );
 };

@@ -6,10 +6,7 @@ import { User } from "./user.model";
 import { AuthRequest } from "./auth-request.model";
 import { Storage } from "@ionic/storage-angular";
 
-/***********************************************************/
-/*********!!! REPLACE BELOW WITH YOUR API URL !!! **********/
-/***********************************************************/
-const API_URL = "http://localhost:4000/api/v1";
+import { environment } from "src/environments/environment";
 
 /**
  * Authentication service for login/logout.
@@ -61,7 +58,7 @@ export class AuthService {
    * @returns An `Observable` that will emit the logged in `User` object on success.
    */
   logIn$(authRequest: AuthRequest): Observable<User> {
-    const authUrl = `${API_URL}/users/login`;
+    const authUrl = `${environment.apiUrl}/users/login`;
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
       delayWhen((auth) => this.#saveAuth$(auth)),
       map((auth) => {
