@@ -17,25 +17,24 @@
       </ion-button>
     </ion-card>
     <ion-list>
-      <div *ngFor="let exercise of exercises; let i = index">
+      <div *ngFor="let workout of workouts; let i = index">
         <ion-item [button]="true">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
                 <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
                   <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                  <div class="exercise-alert"> {{ exercise.level }}</div>
                 </ion-thumbnail>
               </ion-col>
               <ion-col size="7">
                 <ion-row>
                   <ion-col>
-                    <p>{{ exercise.name }}</p>
+                    <p>{{ workout.name }}</p>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <p>{{ exercise.sets }} x {{ exercise.repetitions }}</p>
+                    <p>Test</p>
                   </ion-col>
                 </ion-row>
               </ion-col>
@@ -49,8 +48,8 @@
                       <ng-template>
                         <ion-content>
                           <ion-list>
-                            <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
-                            <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice
+                            <ion-item [button]="true" [detail]="false">Modifier le workout</ion-item>
+                            <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer le workout
                             </ion-item>
                           </ion-list>
                         </ion-content>
@@ -60,7 +59,7 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <p>Test 2</p>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
                   </ion-col>
                 </ion-row>
               </ion-col>
