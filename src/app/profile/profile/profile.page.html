@@ -12,32 +12,20 @@
   <br>
   <ion-list>
     <ion-item>
-      <ion-input labelPlacement="floating" value="test">
+      <ion-input disabled labelPlacement="floating" value="{{user?.username}}">
         <div slot="label">Username
         </div>
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-input labelPlacement="floating" value="test@test.com">
+      <ion-input disabled labelPlacement="floating" value="{{user?.email}}">
         <div slot="label">Email
         </div>
       </ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="********">
-        <div slot="label">Mot de passe
-        </div>
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="********">
-        <div slot="label">Confirmation mot de passe
-        </div>
-      </ion-input>
-    </ion-item>
+
   </ion-list>
 
-  <ion-button (click)="logOut()" expand="block" color="danger" fill="outline">Se déconnecter</ion-button>
-  <ion-button expand="block" color="danger">Supprimer mon profil</ion-button>
+  <ion-button (click)="logOut()" expand="block" color="danger">Se déconnecter</ion-button>
 
 </ion-content>
