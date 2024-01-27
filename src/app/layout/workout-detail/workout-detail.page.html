@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/library"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>{{ workout?.name }}</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>{{ averageDuration }}</p>
+      </ion-col>
+      <ion-col>
+        <p>{{ averageLevel }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button routerLink="/create-workout" expand="block" class="custom-add-button">
+    <span class="icon-holder">
+      <ion-icon name="add"></ion-icon>
+    </span>
+    Ajouter un exercice
+  </ion-button>
+  <ion-list>
+    <div *ngFor="let exercise of exercisesFromAWorkout; let i = index">
+      <ion-item (click)="openModal(exercise)" class="custom-item" lines="none">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
+                <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col size="7">
+              <div class="exercise-info">
+                <h3>{{ exercise.name }}</h3>
+                <p>16 x</p>
+              </div>
+            </ion-col>
+            <ion-col size="2">
+              <ion-row>
+                <ion-col>
+                  <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
+                    <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
+                  </ion-button>
+                  <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
+                    <ng-template>
+                      <ion-content>
+                        <ion-list>
+                          <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
+                          <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice
+                          </ion-item>
+                        </ion-list>
+                      </ion-content>
+                    </ng-template>
+                  </ion-popover>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+    <ion-modal #exerciseModal>
+      <ng-template>
+        <ion-content>
+          <ion-toolbar>
+            <ion-title>{{ selectedExercise?.name }}</ion-title>
+            <ion-buttons slot="end">
+              <ion-button color="light" (click)="exerciseModal.dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          <p>Nombre de répétitions : {{ selectedExercise?.repetitions }}</p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-list>
+</ion-content>
