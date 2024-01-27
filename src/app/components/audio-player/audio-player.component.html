@@ -1,0 +1,16 @@
+<div *ngIf="showPlayer" class="audio-controls">
+  <div class="audio-player-container">
+    <div class="audio-player">
+      <img src="path-to-your-image.png" alt="Exercise Image" class="audio-image">
+      <div class="audio-details">
+        <span class="audio-title">Squats</span>
+        <span class="audio-current-time">0:10</span>
+        <input type="range" class="audio-progress" min="0" max="100" value="0">
+        <span class="audio-duration">0:37</span>
+        <button (click)="togglePlay()">
+          <i class="icon" [ngClass]="isPlaying ? 'icon-pause' : 'icon-play'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
