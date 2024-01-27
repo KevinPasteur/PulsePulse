@@ -1,0 +1,37 @@
+<div class="ion-padding">
+  <h1 class="ion-text-center">S'inscrire</h1>
+
+  <h3>Crée ton compte</h3>
+  <form #registerForm="ngForm" (submit)="onSubmit(registerForm)">
+
+    <!-- Email input -->
+    <ion-input label="Email" labelPlacement="floating" inputmode="text" #email="ngModel" required="true" name="email"
+      [(ngModel)]="registerRequest.email"></ion-input>
+    <!-- Error message displayed if the username is invalid -->
+    <ion-text color="danger" *ngIf="username.invalid && username.touched">Email est requis.</ion-text>
+
+    <!-- Username input -->
+    <ion-input label="Nom d'utilisateur" labelPlacement="floating" inputmode="text" #username="ngModel" required="true"
+      name="username" [(ngModel)]="registerRequest.username"></ion-input>
+    <!-- Error message displayed if the username is invalid -->
+    <ion-text color="danger" *ngIf="username.invalid && username.touched">Nom d'utilisateur est requis.</ion-text>
+
+    <!-- Password input -->
+    <ion-input label="Mot de passe" labelPlacement="floating" inputmode="text" #password="ngModel" required="true"
+      type="password" name="password" [(ngModel)]="registerRequest.password"></ion-input>
+
+    <!-- Error message displayed if the password is invalid -->
+    <ion-text color="danger" *ngIf="password.invalid && password.touched">Mot de passe est requis.</ion-text>
+
+    <!-- Submit button -->
+    <ion-button type="submit" expand="block" [disabled]="registerForm.invalid">S'inscrire'</ion-button>
+
+    <!-- Error message displayed if the login failed -->
+    <ion-text color="danger" *ngIf="registerError">Vérifies tes données.</ion-text>
+  </form>
+
+  <b class="ion-text-center">
+    <p>Tu as déjà un compte ? <a routerLink="/login">Connecte toi !</a></p>
+  </b>
+
+</div>
