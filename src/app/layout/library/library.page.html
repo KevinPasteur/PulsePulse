@@ -1,8 +1,11 @@
 <ion-content class="ion-padding">
   <h1>Bibliothèques</h1>
-  <ion-searchbar></ion-searchbar>
-  <ion-segment [(ngModel)]="selectedSegment">
-    <ion-segment-button value="workouts">
+
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  <app-audio-player></app-audio-player>
+
+  <ion-segment value="workouts" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="workouts" checked>
       <ion-label>Mes Workouts</ion-label>
     </ion-segment-button>
     <ion-segment-button value="exercises">
@@ -17,8 +20,8 @@
       </ion-button>
     </ion-card>
     <ion-list>
-      <div *ngFor="let workout of workouts; let i = index">
-        <ion-item [button]="true">
+      <div *ngFor="let workout of filteredWorkouts; let i = index">
+        <ion-item [routerLink]="['/workout-detail', workout.id]">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
@@ -26,7 +29,7 @@
                   <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                 </ion-thumbnail>
               </ion-col>
-              <ion-col size="7">
+              <ion-col size="6">
                 <ion-row>
                   <ion-col>
                     <p>{{ workout.name }}</p>
@@ -38,10 +41,10 @@
                   </ion-col>
                 </ion-row>
               </ion-col>
-              <ion-col size="2">
+              <ion-col size="3">
                 <ion-row>
                   <ion-col>
-                    <ion-button id="popover-button-{{i}}" fill="clear">
+                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
                       <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
                     </ion-button>
                     <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
@@ -59,7 +62,6 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
                   </ion-col>
                 </ion-row>
               </ion-col>
@@ -78,8 +80,8 @@
       </ion-button>
     </ion-card>
     <ion-list>
-      <div *ngFor="let exercise of exercises; let i = index">
-        <ion-item [button]="true">
+      <div *ngFor="let exercise of filteredExercises; let i = index">
+        <ion-item>
           <ion-grid>
             <ion-row>
               <ion-col size="3">
@@ -103,7 +105,7 @@
               <ion-col size="2">
                 <ion-row>
                   <ion-col>
-                    <ion-button id="popover-button-{{i}}" fill="clear">
+                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
                       <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
                     </ion-button>
                     <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
@@ -121,7 +123,9 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <p>Test 2</p>
+                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="playAudio()">
+                      <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
+                    </ion-button>
                   </ion-col>
                 </ion-row>
               </ion-col>
