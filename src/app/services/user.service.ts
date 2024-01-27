@@ -18,4 +18,8 @@ export class UserService {
   getWorkoutsFromAUser(userId: string): Observable<any> {
     return this.http.get(`${this.url}/${userId}/workouts`);
   }
+
+  getUser(userId: string): Observable<any> {
+    return this.http.get(`${this.url}/${userId}`);
+  }
 }
