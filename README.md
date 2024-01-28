@@ -4,7 +4,7 @@
   <br>
 </h1>
 
-<h4 align="center">API REST pour l'application de planification de programme fitness PulsePulse
+<h4 align="center">Application de planification de programme fitness PulsePulse
     <br><br>
 </h4>
 
