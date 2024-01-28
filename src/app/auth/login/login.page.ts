@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm  } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { AuthRequest } from "../../security/auth-request.model";
-import { AuthService } from "../../security/auth.service";
-import { Router, RouterLink } from "@angular/router";
+import { FormsModule, NgForm } from '@angular/forms';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { AuthRequest } from '../../security/auth-request.model';
+import { AuthService } from '../../security/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink],
 })
 export class LoginPage {
   /**
@@ -29,7 +29,11 @@ export class LoginPage {
    */
   loginError = false;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastController: ToastController
+  ) {
     this.authRequest = {};
   }
 
@@ -50,10 +54,23 @@ export class LoginPage {
     // a perfectly valid "AuthRequest" object, and that's what we are telling TypeScript
     // here with "as AuthRequest".
     this.auth.logIn$(this.authRequest as AuthRequest).subscribe({
-      next: () => this.router.navigateByUrl("/library"),
-      error: (err) => {
+      next: async () => {
+        this.router.navigateByUrl('/library');
+        const toast = await this.toastController.create({
+          message: 'Vous vous êtes connecté avec succès !',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+      },
+      error: async (err) => {
         this.loginError = true;
-        console.warn(`Authentication failed: ${err.message}`);
+        const toast = await this.toastController.create({
+          message: 'Échec de la connexion',
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
       },
     });
   }

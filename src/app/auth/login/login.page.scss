@@ -22,6 +22,9 @@
   src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
     format("opentype");
 }
+a{
+  color: #644AFF;
+}
 
 h1 {
   font-family: "bigTitle";
@@ -37,6 +40,7 @@ ion-button {
   font-family: "text";
   margin-bottom: 2em;
   margin-top: 2em;
+  --background: #644AFF;
 }
 p {
   font-family: "text";
