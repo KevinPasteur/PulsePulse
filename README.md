@@ -85,7 +85,7 @@ Afin de retrouver plus facilement votre workout ou votre exercice une barre de r
 </p>
 
 #### Suppression
-Pour supprimer un exercice ou un workout, utilisez les 3 petits.
+Pour supprimer un exercice ou un workout, utilisez les 3 petits points.
 <p align="center">
   <img src="https://github.com/KevinPasteur/PulsePulse/blob/main/src/assets/gifs/delete.gif" alt="animated" />
 </p>
@@ -122,7 +122,7 @@ Depuis la page de détail d'un workout, vous aurez la possibilité au moyen d'un
 </p>
 
 ## Audio Player
-Si vous avez enregistrer une note vocale pour un exercice, vous aurez la possibilité de l'écouter depuis la page "Mes Exercices", si vous changer de page, le lecteur vous suivra afin de ne pas se faire couper durant votre écoute.
+Si vous avez enregistrer une note vocale pour un exercice, vous aurez la possibilité de l'écouter depuis la page "Mes Exercices", si vous changer de page, le lecteur vous suivra afin de ne pas couper durant votre écoute.
 
 <p align="center">
   <img src="https://github.com/KevinPasteur/PulsePulse/blob/main/src/assets/gifs/audio-player.gif" alt="animated" />
