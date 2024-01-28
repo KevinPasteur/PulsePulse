@@ -24,6 +24,7 @@ import { WorkoutExercisesResponse } from '../workouts/workoutExercisesResponse.m
 export class WorkoutService {
   private workoutsSubject = new BehaviorSubject<Workout[]>([]);
   workouts$ = this.workoutsSubject.asObservable();
+
   private exercisesFromAWorkoutSubject = new BehaviorSubject<Exercise[]>([]);
   exercisesFromAWorkout$ = this.exercisesFromAWorkoutSubject.asObservable();
 
@@ -32,9 +33,9 @@ export class WorkoutService {
     private userService: UserService
   ) {}
 
-  storeWorkout$(formData: FormData): Observable<Workout> {
+  storeWorkout$(workout: WorkoutRequest): Observable<Workout> {
     const authUrl = `${environment.apiUrl}/workouts`;
-    return this.http.post<WorkoutResponse>(authUrl, formData).pipe(
+    return this.http.post<WorkoutResponse>(authUrl, workout).pipe(
       map((workout) => {
         return workout.workouts;
       })
