@@ -23,22 +23,27 @@ src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
   format("opentype");
 }
 
+a{
+  color: #644AFF;
+}
+
 h1 {
-font-family: "bigTitle";
+  font-family: "bigTitle";
 }
 h3 {
-margin-top: 6em;
-margin-bottom: 1em;
-font-family: "thirdTitle";
-font-size: 18px;
+  margin-top: 6em;
+  margin-bottom: 1em;
+  font-family: "thirdTitle";
+  font-size: 18px;
 }
 ion-button {
-height: 48px;
-font-family: "text";
-margin-bottom: 2em;
-margin-top: 2em;
+  height: 48px;
+  font-family: "text";
+  margin-bottom: 2em;
+  margin-top: 2em;
+  --background: #644AFF;
 }
 p {
-font-family: "text";
-font-size: 14px;
+  font-family: "text";
+  font-size: 14px;
 }
