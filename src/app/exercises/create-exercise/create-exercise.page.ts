@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { personCircle, square, mic, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { RouterLink, Router } from '@angular/router';
@@ -45,6 +45,8 @@ export class CreateExercisePage implements AfterViewInit {
   audioChunks: Blob[] = [];
   audioBlob: Blob;
 
+  videoFile: File;
+
   exerciseError = false;
 
   currentUser: any;
@@ -53,7 +55,8 @@ export class CreateExercisePage implements AfterViewInit {
     private exerciseService: ExerciseService,
     private changeDetector: ChangeDetectorRef,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastController: ToastController
   ) {
     this.exercise = {};
     this.exerciseRequest = {};
@@ -66,14 +69,18 @@ export class CreateExercisePage implements AfterViewInit {
 
   ngAfterViewInit() {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-      this.mediaRecorder = new MediaRecorder(stream);
+      this.mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm',
+      });
 
       this.mediaRecorder.ondataavailable = (e: any) => {
         this.audioChunks.push(e.data);
       };
 
       this.mediaRecorder.onstop = (e: any) => {
-        this.audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
+        this.audioBlob = new Blob(this.audioChunks, {
+          type: this.mediaRecorder.mimeType,
+        });
         this.audioUrl = URL.createObjectURL(this.audioBlob);
         this.audioPlayer.nativeElement.src = this.audioUrl;
 
@@ -81,6 +88,15 @@ export class CreateExercisePage implements AfterViewInit {
         this.changeDetector.detectChanges();
       };
     });
+  }
+
+  onVideoSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.videoFile = file;
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -93,15 +109,30 @@ export class CreateExercisePage implements AfterViewInit {
       formData.append('audio', this.audioBlob);
     }
 
+    if (this.videoFile) {
+      formData.append('video', this.videoFile);
+    }
+
     formData.append('data', JSON.stringify(this.exerciseRequest));
 
     this.exerciseService.storeExercise$(formData).subscribe({
-      next: () => {
+      next: async () => {
         this.exerciseService.loadExercises(this.currentUser.id);
         this.router.navigateByUrl('/library');
+        const toast = await this.toastController.create({
+          message: 'Exercice créé avec succès',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
       },
-      error: (err) => {
-        console.warn(`Authentication failed: ${err.message}`);
+      error: async (err) => {
+        const toast = await this.toastController.create({
+          message: "Échec de la création de l'exercice",
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
       },
     });
   }

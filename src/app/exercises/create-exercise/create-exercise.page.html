@@ -74,9 +74,9 @@
       <ion-item lines="none">
         <ion-select required name="level" #level="ngModel" [(ngModel)]="exerciseRequest.level"
           placeholder="Sélectionnez un niveau">
-          <ion-select-option value="facile">Facile</ion-select-option>
-          <ion-select-option value="moyen">Moyen</ion-select-option>
-          <ion-select-option value="difficile">Difficile</ion-select-option>
+          <ion-select-option value="Facile">Facile</ion-select-option>
+          <ion-select-option value="Moyen">Moyen</ion-select-option>
+          <ion-select-option value="Difficile">Difficile</ion-select-option>
 
           <div slot="label">Niveau <ion-text color="danger">*</ion-text>
           </div>
@@ -88,8 +88,18 @@
       <ion-item lines="none">
         <ion-select required name="bodyPart" #bodyPart="ngModel" [(ngModel)]="exerciseRequest.bodyPart"
           placeholder="Sélectionnez le(s) zone(s)" [multiple]="true">
-          <ion-select-option value="epaules">Épaules</ion-select-option>
-          <ion-select-option value="bras">Bras</ion-select-option>
+          <ion-select-option value="pecs">Pecs</ion-select-option>
+          <ion-select-option value="shoulders">Épaules</ion-select-option>
+          <ion-select-option value="biceps">Biceps</ion-select-option>
+          <ion-select-option value="triceps">Triceps</ion-select-option>
+          <ion-select-option value="forearms">Avant-bras</ion-select-option>
+          <ion-select-option value="traps">Trapèzes</ion-select-option>
+          <ion-select-option value="back">Dos</ion-select-option>
+          <ion-select-option value="lowerback">Bas du dos</ion-select-option>
+          <ion-select-option value="glutes">Fessiers</ion-select-option>
+          <ion-select-option value="quadriceps">Quadriceps</ion-select-option>
+          <ion-select-option value="hamstrings">Ischios-jambiers</ion-select-option>
+          <ion-select-option value="calves">Mollets</ion-select-option>
           <div slot="label">Zone ciblée(s) <ion-text color="danger">*</ion-text>
           </div>
 
@@ -123,11 +133,11 @@
 
       <ion-item lines="none">
         <ion-label>Insérer une vidéo d'explication</ion-label>
-        <input type="file" accept="video/*" capture />
+        <input type="file" accept="video/*" (change)="onVideoSelected($event)" />
       </ion-item>
     </ion-list>
     <br />
-    <ion-button expand="block" type="submit">Créer mon exercice</ion-button>
+    <ion-button expand="block" [disabled]="exerciseForm.invalid" type="submit">Créer mon exercice</ion-button>
   </form>
 
 

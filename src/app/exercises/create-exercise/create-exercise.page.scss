@@ -1,3 +1,28 @@
+*{
+  font-family: "text";
+}
+
+.ion-padding {
+height: 100%;
+}
+@font-face {
+font-family: "bigTitle";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
+@font-face {
+font-family: "thirdTitle";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
+@font-face {
+font-family: "text";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
 ion-radio {
 
   --color: #ddd;
