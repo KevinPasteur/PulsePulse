@@ -57,6 +57,18 @@ $ ionic serve
 
 ## Utilisation
 
+WARNING : Notre API étant hébergée sur Render (FREE), effectuez une première requête depuis votre navigateur à https://pulsepulse-api.onrender.com.
+
+Vous devriez voir apparaître ce message :
+
+```
+Bienvenue sur l'API de PulsePulse. Pour plus d'informations, rendez-vous sur : https://github.com/KevinPasteur/PulsePulse-API
+```
+
+Lorsque cela est bon vous pourrez alors utiliser notre application.
+
+---
+
 Afin d'avoir un aperçu de notre application vous retrouverez ci-dessous différents chapitres expliquant chaque fonctionnalité.
 
 ### Login / Register
