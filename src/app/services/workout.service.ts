@@ -83,16 +83,4 @@ export class WorkoutService {
       (error) => {}
     );
   }
-
-  removeExerciseFromAWorkout$(
-    workoutId: any,
-    exerciseId: any
-  ): Observable<any> {
-    const authUrl = `${environment.apiUrl}/workouts/${workoutId}/exercises/${exerciseId}`;
-    return this.http.delete(authUrl).pipe(
-      map((exercise) => {
-        return exercise;
-      })
-    );
-  }
 }
