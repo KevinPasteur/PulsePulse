@@ -43,15 +43,6 @@
   align-items: center;
 }
 
-.audio-details {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.audio-title {
-  flex-grow: 1;
-}
 
 .audio-current-time,
 .audio-duration {
@@ -67,17 +58,37 @@ ion-icon {
   position: relative; /* Ceci est nécessaire pour que la position absolue de .close-container soit relative à .audio-controls */
 }
 
+.audio-details {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px); /* Ajustez la largeur en fonction de la position de la croix */
+  position: relative; /* Ajoutez une position relative pour positionner la croix */
+}
+
+.audio-title {
+  flex-grow: 1;
+  overflow: hidden; /* Empêche le titre de déborder sur la croix */
+  white-space: nowrap; /* Empêche le titre de passer à la ligne */
+  text-overflow: ellipsis; /* Affiche des points de suspension si le titre est trop long */
+}
+
 .close-container {
-  position: absolute; /* Position absolue pour la croix */
-  top: 5px; /* Placée en haut de .audio-controls */
-  left: 11px; /* Placée à gauche de .audio-controls */
-  z-index: 10; /* Assurez-vous que le bouton de fermeture soit au-dessus des autres éléments */
+  position: absolute;
+  top: 5px;
+  right: 0; /* Positionnez la croix à droite du conteneur audio-details */
+  z-index: 10;
+  padding: 5px; /* Ajoutez un espace autour de la croix pour une meilleure expérience utilisateur */
 }
 
 .close-modal {
   background-color: transparent;
-  color: #644AFF;
-  font-size: 1em; /* Taille de la croix */
-  line-height: 1; /* Alignement vertical de la croix */
-  z-index: 10;
+  color: #644aff;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer; /* Changez le curseur pour indiquer qu'il s'agit d'un bouton cliquable */
+  border: none; /* Supprimez la bordure par défaut du bouton */
+}
+
+.close-modal:hover {
+  color: #4285f4; /* Changez la couleur lors du survol pour plus de visibilité */
 }
