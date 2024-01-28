@@ -64,6 +64,25 @@ export class WorkoutService {
     this.workoutsSubject.next(workouts);
   }
 
+  updateWorkout$(workoutId: any, formData: FormData): Observable<Workout> {
+    const authUrl = `${environment.apiUrl}/workouts/${workoutId}`;
+    return this.http.put<WorkoutResponse>(authUrl, formData).pipe(
+      map((workout) => {
+        console.log(workout);
+        return workout.workouts;
+      })
+    );
+  }
+
+  deleteWorkout$(workoutId: any): Observable<any> {
+    const authUrl = `${environment.apiUrl}/workouts/${workoutId}`;
+    return this.http.delete(authUrl).pipe(
+      map((workout) => {
+        return workout;
+      })
+    );
+  }
+
   loadWorkouts(userId: string) {
     this.userService.getWorkoutsFromAUser(userId).subscribe(
       (data) => {
@@ -72,6 +91,18 @@ export class WorkoutService {
       (error) => {
         console.error('Error fetching workouts:', error);
       }
+    );
+  }
+
+  removeExerciseFromAWorkout$(
+    workoutId: any,
+    exerciseId: any
+  ): Observable<any> {
+    const authUrl = `${environment.apiUrl}/workouts/${workoutId}/exercises/${exerciseId}`;
+    return this.http.delete(authUrl).pipe(
+      map((exercise) => {
+        return exercise;
+      })
     );
   }
 }
