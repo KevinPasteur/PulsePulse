@@ -18,13 +18,6 @@ export const routes: Routes = [
     // canActivate: [onlyAuthenticated],
     children: [
       {
-        path: 'community',
-        loadComponent: () =>
-          import('./layout/community/community.page').then(
-            (m) => m.CommunityPage
-          ),
-      },
-      {
         path: 'library',
         loadComponent: () =>
           import('./layout/library/library.page').then((m) => m.LibraryPage),
@@ -60,4 +53,20 @@ export const routes: Routes = [
         (m) => m.WorkoutDetailPage
       ),
   },
+  {
+    path: 'update-exercise/:id',
+    loadComponent: () =>
+      import('./exercises/update-exercise/update-exercise.page').then(
+        (m) => m.UpdateExercisePage
+      ),
+  },
+  {
+    path: 'community',
+    loadComponent: () =>
+      import('./layout/community/community.page').then((m) => m.CommunityPage),
+  },  {
+    path: 'create-workout',
+    loadComponent: () => import('./workouts/create-workout/create-workout.page').then( m => m.CreateWorkoutPage)
+  },
+
 ];
