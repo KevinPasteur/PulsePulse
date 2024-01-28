@@ -24,27 +24,39 @@
     </ion-button>
     <ion-list>
       <div *ngFor="let workout of filteredWorkouts; let i = index">
-        <ion-item [routerLink]="['/workout-detail', workout.id]" lines="none" class="custom-item">
+        <ion-item (click)="redirectToWorkoutDetail(workout.id)" lines="none" class="custom-item">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
                 <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
-                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                  <img [src]="getThumbnail(workout.bodyPart)" />
                 </ion-thumbnail>
               </ion-col>
               <ion-col size="6">
-                <p>{{ workout.name }}</p>
+                <div class="exercise-info">
+                  <div class="exercise-title">
+                    <h3>{{ workout?.name }}</h3>
+                  </div>
+                  <ion-text>
+                    {{ translateBodyPart(workout?.bodyPart) }}
+                  </ion-text>
+                </div>
               </ion-col>
               <ion-col size="3">
                 <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
                   <ion-icon icon-only class="ion-icon-dots" name="ellipsis-horizontal"></ion-icon>
                 </ion-button>
+                <ion-button fill="clear">
+                  <ion-icon class="ion-chevron" name="chevron-forward-outline"></ion-icon>
+                </ion-button>
                 <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
                   <ng-template>
                     <ion-content>
                       <ion-list>
-                        <ion-item [button]="true" [detail]="false">Modifier le workout</ion-item>
-                        <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer le workout
+                        <ion-item [button]="true" [detail]="false" [routerLink]="['/update-workout', workout.id]">
+                          Modifier le workout</ion-item>
+                        <ion-item class="custom-text-red" [button]="true" [detail]="false"
+                          (click)="deleteAWorkout(workout.id)">Supprimer le workout
                         </ion-item>
                       </ion-list>
                     </ion-content>
@@ -69,12 +81,12 @@
     </ion-button>
     <ion-list>
       <div *ngFor="let exercise of filteredExercises; let i = index">
-        <ion-item lines="none" class="custom-item">
+        <ion-item lines="none" class="custom-item" (click)="openModal(exercise)">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
                 <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
-                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                  <img [src]="getThumbnail(exercise.bodyPart)" />
                   <div class="exercise-alert"> {{ exercise.level }}</div>
                 </ion-thumbnail>
               </ion-col>
@@ -106,8 +118,11 @@
                     </ion-content>
                   </ng-template>
                 </ion-popover>
+                <ion-button fill="clear">
+                  <ion-icon class="ion-chevron" name="chevron-forward-outline"></ion-icon>
+                </ion-button>
                 <ion-button *ngIf="exercise.commentLink" id="popover-button-{{i}}" fill="clear"
-                  (click)="playAudio(exercise.name, exercise.commentLink)">
+                  (click)="playAudio($event, exercise.name, exercise.commentLink)">
                   <ion-icon class="icon-play" name="play-circle-outline"></ion-icon>
                 </ion-button>
               </ion-col>
@@ -116,5 +131,44 @@
         </ion-item>
       </div>
     </ion-list>
+    <ion-modal #exerciseModal>
+      <ng-template>
+        <ion-content class="ion-padding">
+          <div class="card-detail">
+            <ion-buttons>
+              <ion-button (click)="exerciseModal.dismiss()">X</ion-button>
+            </ion-buttons>
+            <h3>{{ selectedExercise?.name }}</h3>
+            <ion-text class="exercise-alert">
+              {{ selectedExercise?.level }}
+            </ion-text>
+            <br />
+            <br />
+            <ion-text>
+              {{ selectedExercise?.repetitions }} rep(s) {{selectedExercise?.duration}} x {{selectedExercise?.sets}}
+              série(s)
+            </ion-text>
+            <br />
+            <br />
+            <div class="thumbnail-with-alert" *ngIf="selectedExercise?.videoLink">
+              <video controls="controls" preload="metadata" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+                <source src="{{selectedExercise?.videoLink}}" type="video/mp4" />
+              </video>
+            </div>
+
+            <div *ngIf="selectedExercise?.description">
+              <p>Description</p>
+              {{selectedExercise?.description}}
+            </div>
+            <p>Partie du corps</p>
+            <div class="bodyPart-content">
+              <div *ngFor="let part of selectedExercise?.bodyPart; let i = index">
+                <ion-note>{{translateBodyPart(part)}}</ion-note>
+              </div>
+            </div>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

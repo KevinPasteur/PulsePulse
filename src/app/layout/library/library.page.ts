@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ViewWillEnter } from '@ionic/angular';
+import { IonicModule, ViewWillEnter, IonModal } from '@ionic/angular';
 import {
   heart,
   add,
@@ -11,11 +11,14 @@ import {
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { AuthService } from '../../security/auth.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ExerciseService } from 'src/app/services/exercise.service';
 import { WorkoutService } from 'src/app/services/workout.service';
 import { AudioService } from 'src/app/services/audio.service';
 import { AudioPlayerComponent } from 'src/app/components/audio-player/audio-player.component';
+import { UtilsService } from 'src/app/services/utils.service';
+import { Exercise } from 'src/app/exercises/create-exercise/exercise.model';
+
 @Component({
   selector: 'app-library',
   templateUrl: './library.page.html',
@@ -38,12 +41,18 @@ export class LibraryPage implements ViewWillEnter {
   filteredExercises: any[] = [];
   filteredWorkouts: any[] = [];
   searchQuery: string = '';
+  thumbnailUrl: string = '';
+
+  @ViewChild('exerciseModal') exerciseModal: IonModal;
+  selectedExercise: any;
 
   constructor(
     private authService: AuthService,
     private exerciseService: ExerciseService,
     private workoutService: WorkoutService,
-    private audioService: AudioService
+    private audioService: AudioService,
+    private router: Router,
+    private utilsService: UtilsService
   ) {
     addIcons({
       heart,
@@ -58,7 +67,6 @@ export class LibraryPage implements ViewWillEnter {
     this.selectedSegment = 'workouts';
     this.exerciseService.exercises$.subscribe((exercises) => {
       this.exercises = exercises;
-      console.log(exercises);
       this.filteredExercises = [...this.exercises];
     });
 
@@ -96,7 +104,16 @@ export class LibraryPage implements ViewWillEnter {
     });
   }
 
-  playAudio(name: string, audio: string) {
+  deleteAWorkout(workoutId: string) {
+    this.workoutService.deleteWorkout$(workoutId).subscribe({
+      next: () => {
+        this.loadWorkouts();
+      },
+    });
+  }
+
+  playAudio(event: Event, name: string, audio: string) {
+    event.stopPropagation();
     this.audioService.play(audio, name);
   }
 
@@ -116,5 +133,22 @@ export class LibraryPage implements ViewWillEnter {
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
+  }
+
+  redirectToWorkoutDetail(workoutId: string) {
+    this.router.navigate(['/workout-detail', workoutId]);
+  }
+
+  getThumbnail(bodyParts: string | string[]): string {
+    return this.utilsService.getThumbnailUrl(bodyParts);
+  }
+
+  translateBodyPart(part: string): string {
+    return this.utilsService.translateBodyPart(part);
+  }
+
+  openModal(exercise: Exercise) {
+    this.selectedExercise = exercise;
+    this.exerciseModal.present();
   }
 }
