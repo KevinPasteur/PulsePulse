@@ -1,30 +1,46 @@
+*{
+  font-family: "text";
+}
+@font-face {
+  font-family: "bigTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "thirdTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "text";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+
 .audio-player-container {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 20px; /* Adjust as needed to 'float' above the footer */
-  background-color: #ffffff; /* Adjust color as needed */
+  background-color: #DBE3FF; /* Adjust color as needed */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
   padding: 10px;
   margin: 0 10px; /* Give some space from the sides */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   box-sizing: border-box; /* So padding doesn't affect the width */
   z-index: 100;
+  height: 75px;
 }
 
 .audio-player {
   display: flex;
   align-items: center;
-}
-
-.audio-image {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  border-radius: 50%;
 }
 
 .audio-details {
@@ -42,19 +58,26 @@
   margin: 0 5px;
 }
 
-.audio-progress {
-  flex-grow: 2;
+ion-icon {
+  font-size: 25px;
+  color: #644AFF;
 }
 
-.icon {
-  cursor: pointer;
-  font-size: 1.5em;
+.audio-controls {
+  position: relative; /* Ceci est nécessaire pour que la position absolue de .close-container soit relative à .audio-controls */
 }
 
-.icon-play::before {
-  content: '▶️'; /* Replace with your play icon */
+.close-container {
+  position: absolute; /* Position absolue pour la croix */
+  top: 5px; /* Placée en haut de .audio-controls */
+  left: 11px; /* Placée à gauche de .audio-controls */
+  z-index: 10; /* Assurez-vous que le bouton de fermeture soit au-dessus des autres éléments */
 }
 
-.icon-pause::before {
-  content: '⏸️'; /* Replace with your pause icon */
+.close-modal {
+  background-color: transparent;
+  color: #644AFF;
+  font-size: 1em; /* Taille de la croix */
+  line-height: 1; /* Alignement vertical de la croix */
+  z-index: 10;
 }

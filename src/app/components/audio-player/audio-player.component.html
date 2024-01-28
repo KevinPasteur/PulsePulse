@@ -1,15 +1,23 @@
 <div *ngIf="showPlayer" class="audio-controls">
+
+
   <div class="audio-player-container">
+    <div class="close-container">
+      <button (click)="closeAudioPlayer()" class="close-modal">
+        X
+      </button>
+    </div>
     <div class="audio-player">
-      <img src="path-to-your-image.png" alt="Exercise Image" class="audio-image">
       <div class="audio-details">
-        <span class="audio-title">Squats</span>
-        <span class="audio-current-time">0:10</span>
-        <input type="range" class="audio-progress" min="0" max="100" value="0">
-        <span class="audio-duration">0:37</span>
-        <button (click)="togglePlay()">
-          <i class="icon" [ngClass]="isPlaying ? 'icon-pause' : 'icon-play'"></i>
-        </button>
+        <span class="audio-title">{{ currentTitle }}</span>
+        <span class="audio-current-time">{{ formatTime(currentTime) }}</span>
+        <input type="range" class="audio-progress" min="0" [max]="duration" [(ngModel)]="currentTime"
+          (ngModelChange)="onSliderChange($event)">
+
+        <span class="audio-duration">{{ formatTime(duration) }}</span>
+        <ion-button (click)="togglePlay()" fill="clear">
+          <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+        </ion-button>
       </div>
     </div>
   </div>
