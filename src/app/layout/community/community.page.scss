@@ -1,0 +1,60 @@
+*{
+  font-family: "text";
+}
+@font-face {
+  font-family: "bigTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "thirdTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "text";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+.community-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #644AFF;
+    font-family: text;
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  ion-button {
+    --background: #644AFF; // Use your brand color
+  }
+}
+
+ion-back-button {
+  height: auto;
+  width: auto;
+  position: relative;
+  height: 48px;
+  top: 20px;
+  float: left;
+  margin-left: 16px;
+  font-family: "text";
+}
