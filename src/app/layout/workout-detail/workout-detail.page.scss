@@ -20,6 +20,21 @@
     format("opentype");
   }
 
+.average-level-display{
+  display: flex;
+  align-items: center;
+}
+
+.color-flame-default{
+  font-size: 30px;
+  color: black;
+}
+
+.color-flame-purple {
+  font-size: 30px;
+  color: #644AFF;
+}
+
 ion-modal {
   --height: 95%;
   --width: 95%;
@@ -203,22 +218,18 @@ ion-icon {
   height: auto; /* Maintient le ratio d'aspect de la vidéo */
 }
 
+.exercise-alert {
+  background-color: rgb(124, 0, 128); // Couleur de l'alerte
+  color: white !important; // Couleur du texte
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: medium;
+  z-index: 10; // Assurez-vous qu'il apparaît par-dessus l'image
+}
+
 .thumbnail-with-alert {
   position: relative;
   display: inline-block; // Assurez-vous que le thumbnail est traité comme un bloc inline
-
-  .exercise-alert {
-    position: absolute;
-    top: 6px;  // Ajustez selon votre besoin
-    left: 6px; // Ajustez selon votre besoin
-    background-color: rgb(124, 0, 128); // Couleur de l'alerte
-    color: white; // Couleur du texte
-    padding: 2px 5px;
-    border-radius: 5px;
-    font-size: medium;
-    z-index: 10; // Assurez-vous qu'il apparaît par-dessus l'image
-  }
-
   img {
     width: 100%; // Assurez-vous que l'image remplit le thumbnail
     height: auto;

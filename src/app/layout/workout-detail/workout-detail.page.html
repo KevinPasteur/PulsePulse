@@ -7,8 +7,27 @@
 <ion-content class="ion-padding">
   <app-audio-player></app-audio-player>
   <h2>{{ workout?.name }}</h2>
-  <p>{{ averageLevel }}</p>
-  <ion-button (click)="openExerciseModal()" expand="block" class="custom-add-button">
+  <div *ngIf="averageLevel !== 'n/a'" class="average-level-display">
+    <ion-text class="exercise-alert average-level-display">
+      {{ averageLevel }}
+    </ion-text>
+    <ion-text class="color-flame-default average-level-display">
+      <ion-icon name="flame-outline"
+        [class]="getFlameCount(averageLevel) >= 1 ? 'color-flame-purple' : 'color-flame-default'">
+      </ion-icon>
+      <ion-icon name="flame-outline"
+        [class]="getFlameCount(averageLevel) >= 2 ? 'color-flame-purple' : 'color-flame-default'">
+      </ion-icon>
+      <ion-icon name="flame-outline"
+        [class]="getFlameCount(averageLevel) >= 3 ? 'color-flame-purple' : 'color-flame-default'">
+      </ion-icon>
+    </ion-text>
+  </div>
+  <br />
+  <ion-text>{{translateBodyPart(workout?.bodyPart)}}</ion-text>
+  <br />
+  <br />
+  <ion-button (click)=" openExerciseModal()" expand="block" class="custom-add-button">
     <span class="icon-holder">
       <ion-icon class="icon-add" name="add"></ion-icon>
     </span>
@@ -21,7 +40,7 @@
           <ion-row>
             <ion-col size="3">
               <ion-thumbnail class="thumbnail-with-alert" aria-hidden="true">
-                <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                <img [src]="getThumbnail(exercise.bodyPart)" />
               </ion-thumbnail>
             </ion-col>
             <ion-col size="7">
@@ -45,7 +64,8 @@
                 <ng-template>
                   <ion-content>
                     <ion-list>
-                      <ion-item [button]="true" [detail]="false">Retirer l'exercice du workout</ion-item>
+                      <ion-item [button]="true" [detail]="false" lines="none">Retirer l'exercice du workout
+                      </ion-item>
                     </ion-list>
                   </ion-content>
                 </ng-template>
@@ -63,8 +83,13 @@
               <ion-button (click)="exerciseModal.dismiss()">X</ion-button>
             </ion-buttons>
             <h3>{{ selectedExercise?.name }}</h3>
+            <ion-text class="exercise-alert">
+              {{ selectedExercise?.level }}
+            </ion-text>
+            <br />
+            <br />
             <ion-text>
-              {{ selectedExercise?.repetitions }} reps {{selectedExercise?.duration}} x {{selectedExercise?.sets}}
+              {{ selectedExercise?.repetitions }} rep(s) {{selectedExercise?.duration}} x {{selectedExercise?.sets}}
               série(s)
             </ion-text>
             <br />
@@ -73,7 +98,6 @@
               <video controls="controls" preload="metadata" webkit-playsinline="webkit-playsinline" class="videoPlayer">
                 <source src="{{selectedExercise?.videoLink}}" type="video/mp4" />
               </video>
-              <div class="exercise-alert"> {{ selectedExercise?.level }}</div>
             </div>
 
             <div *ngIf="selectedExercise?.description">

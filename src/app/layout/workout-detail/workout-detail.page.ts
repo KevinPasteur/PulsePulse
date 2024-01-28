@@ -17,12 +17,14 @@ import {
   playCircleOutline,
   ellipsisHorizontal,
   chevronForwardOutline,
+  flameOutline,
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Exercise } from 'src/app/exercises/create-exercise/exercise.model';
 import { AudioPlayerComponent } from 'src/app/components/audio-player/audio-player.component';
 import { AddExerciceComponent } from 'src/app/components/add-exercice/add-exercice.component';
 import { ModalController } from '@ionic/angular/standalone';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-workout-detail',
@@ -53,7 +55,8 @@ export class WorkoutDetailPage implements ViewWillEnter {
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
     private modalCtrl: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private utilsService: UtilsService
   ) {
     addIcons({
       heart,
@@ -61,6 +64,7 @@ export class WorkoutDetailPage implements ViewWillEnter {
       playCircleOutline,
       ellipsisHorizontal,
       chevronForwardOutline,
+      flameOutline,
     });
   }
 
@@ -83,7 +87,6 @@ export class WorkoutDetailPage implements ViewWillEnter {
         this.exercisesFromAWorkout = exercises;
         this.averageLevel = this.calculateAverageLevel(exercises);
         this.averageDuration = this.calculateTotalDuration(exercises);
-        console.log(workout, exercises);
       });
   }
 
@@ -103,12 +106,14 @@ export class WorkoutDetailPage implements ViewWillEnter {
   }
 
   calculateAverageLevel(exercises: any) {
-    type ExerciseLevel = 'Easy' | 'Medium' | 'Hard';
+    type ExerciseLevel = 'Facile' | 'Moyen' | 'Difficile';
+
+    if (exercises.length === 0) return 'n/a';
 
     const levelMapping: { [key in ExerciseLevel]: number } = {
-      Easy: 1,
-      Medium: 2,
-      Hard: 3,
+      Facile: 1,
+      Moyen: 2,
+      Difficile: 3,
     };
 
     let totalLevel = 0;
@@ -133,24 +138,6 @@ export class WorkoutDetailPage implements ViewWillEnter {
 
   stopEventPropagation(event: Event) {
     event.stopPropagation();
-  }
-
-  translateBodyPart(part: string): any {
-    const translations: { [key: string]: string } = {
-      pecs: 'Pectoraux',
-      shoulders: 'Épaules',
-      biceps: 'Biceps',
-      triceps: 'Triceps',
-      forearms: 'Avant-bras',
-      traps: 'Trapèzes',
-      back: 'Dos',
-      lowerback: 'Bas du dos',
-      glutes: 'Fessiers',
-      quadriceps: 'Quadriceps',
-      hamstrings: 'Ischio-jambiers',
-      calves: 'Mollets',
-    };
-    return translations[part] || part;
   }
 
   async openExerciseModal() {
@@ -200,5 +187,26 @@ export class WorkoutDetailPage implements ViewWillEnter {
       color: 'success',
     });
     toast.present();
+  }
+
+  getThumbnail(bodyParts: string | string[]): string {
+    return this.utilsService.getThumbnailUrl(bodyParts);
+  }
+
+  getFlameCount(level: string): number {
+    switch (level) {
+      case 'Facile':
+        return 1;
+      case 'Moyen':
+        return 2;
+      case 'Difficile':
+        return 3;
+      default:
+        return 0;
+    }
+  }
+
+  translateBodyPart(part: string): string {
+    return this.utilsService.translateBodyPart(part);
   }
 }
