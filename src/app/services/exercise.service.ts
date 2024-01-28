@@ -27,11 +27,8 @@ export class ExerciseService {
 
   storeExercise$(formData: FormData): Observable<Exercise> {
     const authUrl = `${environment.apiUrl}/exercises`;
-
-    console.log(formData);
     return this.http.post<ExerciseResponse>(authUrl, formData).pipe(
       map((exercise) => {
-        console.log(exercise);
         return exercise.exercise;
       })
     );
@@ -39,6 +36,35 @@ export class ExerciseService {
 
   updateExercises(exercises: Exercise[]) {
     this.exercisesSubject.next(exercises);
+  }
+
+  updateExercise$(exerciseId: any, formData: FormData): Observable<Exercise> {
+    const authUrl = `${environment.apiUrl}/exercises/${exerciseId}`;
+    return this.http.put<ExerciseResponse>(authUrl, formData).pipe(
+      map((exercise) => {
+        console.log(exercise);
+        return exercise.exercise;
+      })
+    );
+  }
+
+  getExerciseById$(exerciseId: any): Observable<Exercise> {
+    console.log(exerciseId);
+    const authUrl = `${environment.apiUrl}/exercises/${exerciseId}`;
+    return this.http.get<Exercise>(authUrl).pipe(
+      map((exercise) => {
+        return exercise;
+      })
+    );
+  }
+
+  deleteAnExercise$(exerciseId: any): Observable<any> {
+    const authUrl = `${environment.apiUrl}/exercises/${exerciseId}`;
+    return this.http.delete(authUrl).pipe(
+      map((exercise) => {
+        return exercise;
+      })
+    );
   }
 
   loadExercises(userId: string) {
@@ -49,6 +75,16 @@ export class ExerciseService {
       (error) => {
         console.error('Error fetching exercises:', error);
       }
+    );
+  }
+
+  addExerciseToWorkout$(workoutId: any, exerciseId: any): Observable<any> {
+    console.log(workoutId, exerciseId);
+    const authUrl = `${environment.apiUrl}/workouts/${workoutId}/exercises/${exerciseId}`;
+    return this.http.post(authUrl, {}).pipe(
+      map((exercise) => {
+        return exercise;
+      })
     );
   }
 }
