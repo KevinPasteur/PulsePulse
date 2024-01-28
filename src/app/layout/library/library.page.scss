@@ -1,3 +1,25 @@
+*{
+  font-family: "text";
+}
+
+@font-face {
+  font-family: "bigTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "thirdTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "text";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+}
+
 .custom-text-red {
   color: red;
 }
@@ -25,7 +47,133 @@
   }
 }
 
+ion-segment-button {
+  --indicator-color: #644AFF;
+  --background-checked: transparent;
+}
+
+/* Material Design styles */
+ion-segment-button.md {
+  --color: #000;
+  --color-checked: #644AFF;
+  --indicator-height: 4px;
+}
+
+/* iOS styles */
+ion-segment-button.ios {
+
+  --color: #644AFF;
+  --color-checked: #fff;
+  --border-radius: 20px;
+}
 
 
+.custom-add-button {
+  padding: 0;
+  border: 2px solid #644AFF; /* or other color */
+  border-radius: 10px; /* Adjust for roundness */
+  color: #644AFF; /* Adjust text color as needed */
+  font-weight: bold;
+  font-family: text;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 10px; /* Space between icon and text */
+  cursor: pointer;
+  margin-bottom: 1rem;
+  height: 100px;
 
+  --background: transparent; /* Supprime le fond par défaut */
+  --background-focused: transparent; /* Supprime le fond lorsque le bouton est focus */
+  --background-hover: transparent; /* Supprime le fond au survol */
+  --background-activated: transparent; /* Supprime le fond lorsqu'il est activé/click */
+  text-decoration: none; /* Supprime le soulignement des liens */
+}
+
+.icon-holder {
+  background-color: #644AFF; /* Purple background */
+  border-radius: 15px; /* Circular shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  margin-right: 8px;
+}
+
+.add-align {
+  display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.icon-add{
+  border-radius: 50%;
+  padding: 0.2rem;
+  font-size: 2rem;
+  color: #644AFF;
+  background-color: white;
+}
+
+.ion-icon-dots {
+  margin: 0;
+  color: black; /* Icon color */
+  font-size: 20px; /* Icon size */
+}
+
+.custom-item {
+  --background: #DBE3FF; /* Adjust the color to match the image */
+  --border-radius: 10px; /* Rounded corners */
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 0;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+
+  --min-height: 70px; /* Remplacez 70px par la hauteur que vous souhaitez */
+  --padding-top: 10px; /* Ajustez le padding supérieur selon vos besoins */
+  --padding-bottom: 10px; /* Ajustez le padding inférieur selon vos besoins */
+}
+
+p{
+  font-family: text;
+  font-weight: bold;
+  color: #644AFF;
+}
+
+h2 {
+  font-family: "bigTitle";
+  font-weight: bold;
+}
+
+
+.exercise-info {
+  padding-left: 10px; /* Space from the thumbnail */
+}
+
+.exercise-info h3 {
+  margin: 0;
+  color: #000; /* Text color for the exercise name */
+  font-size: 1.2em;
+  font-family: text;
+  margin-bottom: 10px;
+}
+
+.exercise-info p {
+  margin: 0;
+  color: #555; /* Text color for the repetitions */
+}
+
+ion-text {
+  font-weight: bold;
+  color : #644AFF;
+}
+
+.icon-play {
+  font-size: 2rem;
+}
 

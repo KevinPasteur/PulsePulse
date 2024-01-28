@@ -58,6 +58,7 @@ export class LibraryPage implements ViewWillEnter {
     this.selectedSegment = 'workouts';
     this.exerciseService.exercises$.subscribe((exercises) => {
       this.exercises = exercises;
+      console.log(exercises);
       this.filteredExercises = [...this.exercises];
     });
 
@@ -87,8 +88,16 @@ export class LibraryPage implements ViewWillEnter {
     this.workoutService.loadWorkouts(this.currentUser.id);
   }
 
-  playAudio() {
-    this.audioService.play();
+  deleteAnExercise(exerciseId: string) {
+    this.exerciseService.deleteAnExercise$(exerciseId).subscribe({
+      next: () => {
+        this.loadExercises();
+      },
+    });
+  }
+
+  playAudio(name: string, audio: string) {
+    this.audioService.play(audio, name);
   }
 
   search(event: any) {

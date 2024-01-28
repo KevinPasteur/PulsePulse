@@ -12,16 +12,19 @@
       <ion-label>Mes Exercices</ion-label>
     </ion-segment-button>
   </ion-segment>
+  <br />
   <div *ngIf="selectedSegment === 'workouts'">
-    <ion-card>
-      <ion-button routerLink="/create-workout" expand="block" class="custom-button">
-        <ion-icon name="add" slot="start"></ion-icon>
-        Créer un Workout
-      </ion-button>
-    </ion-card>
+    <ion-button routerLink="/create-workout" expand="block" lines="none" class="custom-add-button">
+      <div class="add-align" text-left>
+        <span class="icon-holder">
+          <ion-icon class="icon-add" name="add"></ion-icon>
+        </span>
+        <ion-label>Créer un Workout</ion-label>
+      </div>
+    </ion-button>
     <ion-list>
       <div *ngFor="let workout of filteredWorkouts; let i = index">
-        <ion-item [routerLink]="['/workout-detail', workout.id]">
+        <ion-item [routerLink]="['/workout-detail', workout.id]" lines="none" class="custom-item">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
@@ -30,40 +33,23 @@
                 </ion-thumbnail>
               </ion-col>
               <ion-col size="6">
-                <ion-row>
-                  <ion-col>
-                    <p>{{ workout.name }}</p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <p>Test</p>
-                  </ion-col>
-                </ion-row>
+                <p>{{ workout.name }}</p>
               </ion-col>
               <ion-col size="3">
-                <ion-row>
-                  <ion-col>
-                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
-                      <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
-                    </ion-button>
-                    <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
-                      <ng-template>
-                        <ion-content>
-                          <ion-list>
-                            <ion-item [button]="true" [detail]="false">Modifier le workout</ion-item>
-                            <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer le workout
-                            </ion-item>
-                          </ion-list>
-                        </ion-content>
-                      </ng-template>
-                    </ion-popover>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                  </ion-col>
-                </ion-row>
+                <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
+                  <ion-icon icon-only class="ion-icon-dots" name="ellipsis-horizontal"></ion-icon>
+                </ion-button>
+                <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item [button]="true" [detail]="false">Modifier le workout</ion-item>
+                        <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer le workout
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -73,15 +59,17 @@
   </div>
 
   <div *ngIf="selectedSegment === 'exercises'">
-    <ion-card>
-      <ion-button routerLink="/create-exercise" expand="block" class="custom-button">
-        <ion-icon name="add" slot="start"></ion-icon>
-        Créer un exercice
-      </ion-button>
-    </ion-card>
+    <ion-button routerLink="/create-exercise" expand="block" lines="none" class="custom-add-button">
+      <div class="add-align" text-left>
+        <span class="icon-holder">
+          <ion-icon class="icon-add" name="add"></ion-icon>
+        </span>
+        <ion-label>Créer un exercice</ion-label>
+      </div>
+    </ion-button>
     <ion-list>
       <div *ngFor="let exercise of filteredExercises; let i = index">
-        <ion-item>
+        <ion-item lines="none" class="custom-item">
           <ion-grid>
             <ion-row>
               <ion-col size="3">
@@ -91,43 +79,37 @@
                 </ion-thumbnail>
               </ion-col>
               <ion-col size="7">
-                <ion-row>
-                  <ion-col>
-                    <p>{{ exercise.name }}</p>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <p>{{ exercise.sets }} x {{ exercise.repetitions }}</p>
-                  </ion-col>
-                </ion-row>
+                <div class="exercise-info">
+                  <div class="exercise-title">
+                    <h3>{{ exercise.name }}</h3>
+                  </div>
+                  <ion-text>
+                    {{ exercise?.repetitions }} {{exercise?.duration}} x {{exercise?.sets}}
+                  </ion-text>
+                </div>
               </ion-col>
               <ion-col size="2">
-                <ion-row>
-                  <ion-col>
-                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
-                      <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
-                    </ion-button>
-                    <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
-                      <ng-template>
-                        <ion-content>
-                          <ion-list>
-                            <ion-item [button]="true" [detail]="false">Modifier l'exercice</ion-item>
-                            <ion-item class="custom-text-red" [button]="true" [detail]="false">Supprimer l'exercice
-                            </ion-item>
-                          </ion-list>
-                        </ion-content>
-                      </ng-template>
-                    </ion-popover>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <ion-button id="popover-button-{{i}}" fill="clear" (click)="playAudio()">
-                      <ion-icon icon-only name="ellipsis-horizontal"></ion-icon>
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
+                <ion-button id="popover-button-{{i}}" fill="clear" (click)="stopEventPropagation($event)">
+                  <ion-icon class="ion-icon-dots" icon-only name="ellipsis-horizontal"></ion-icon>
+                </ion-button>
+                <ion-popover trigger="popover-button-{{i}}" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item [detail]="false" [routerLink]="['/update-exercise', exercise.id]">
+                          Modifier
+                          l'exercice</ion-item>
+                        <ion-item class="custom-text-red" [button]="true" [detail]="false"
+                          (click)="deleteAnExercise(exercise.id)">Supprimer l'exercice
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+                <ion-button *ngIf="exercise.commentLink" id="popover-button-{{i}}" fill="clear"
+                  (click)="playAudio(exercise.name, exercise.commentLink)">
+                  <ion-icon class="icon-play" name="play-circle-outline"></ion-icon>
+                </ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -135,6 +117,4 @@
       </div>
     </ion-list>
   </div>
-
-
 </ion-content>
