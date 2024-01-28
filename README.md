@@ -131,7 +131,7 @@ Si vous avez enregistrer une note vocale pour un exercice, vous aurez la possibi
 <p align="right">(<a href="#retour-en-haut">retour en haut</a>)</p>
 
 ## Bugs
-- La suppression d'un exercice d'un workout n'est pas possible actuellement
+- La suppression d'un exercice depuis un workout n'est pas possible actuellement
 
 <p align="right">(<a href="#retour-en-haut">retour en haut</a>)</p>
 
