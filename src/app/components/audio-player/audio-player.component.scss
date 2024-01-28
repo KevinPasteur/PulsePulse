@@ -24,16 +24,16 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 20px; /* Adjust as needed to 'float' above the footer */
-  background-color: #DBE3FF; /* Adjust color as needed */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+  bottom: 20px;
+  background-color: #DBE3FF;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  margin: 0 10px; /* Give some space from the sides */
+  margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box; /* So padding doesn't affect the width */
+  box-sizing: border-box;
   z-index: 100;
   height: 75px;
 }
@@ -41,6 +41,12 @@
 .audio-player {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.audio-progress {
+  max-width: 75px;
+  height: 8px;
 }
 
 
@@ -55,29 +61,33 @@ ion-icon {
 }
 
 .audio-controls {
-  position: relative; /* Ceci est nécessaire pour que la position absolue de .close-container soit relative à .audio-controls */
+  position: relative;
 }
 
 .audio-details {
   display: flex;
   align-items: center;
-  width: calc(100% - 40px); /* Ajustez la largeur en fonction de la position de la croix */
-  position: relative; /* Ajoutez une position relative pour positionner la croix */
+  justify-content: center;
+  width: 90%;
+  position: relative;
 }
 
 .audio-title {
   flex-grow: 1;
-  overflow: hidden; /* Empêche le titre de déborder sur la croix */
-  white-space: nowrap; /* Empêche le titre de passer à la ligne */
-  text-overflow: ellipsis; /* Affiche des points de suspension si le titre est trop long */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
 }
 
 .close-container {
   position: absolute;
-  top: 5px;
-  right: 0; /* Positionnez la croix à droite du conteneur audio-details */
+  top: -3px;
+  right: 5px;
   z-index: 10;
-  padding: 5px; /* Ajoutez un espace autour de la croix pour une meilleure expérience utilisateur */
+  padding: 5px;
 }
 
 .close-modal {
@@ -85,10 +95,11 @@ ion-icon {
   color: #644aff;
   font-size: 1em;
   line-height: 1;
-  cursor: pointer; /* Changez le curseur pour indiquer qu'il s'agit d'un bouton cliquable */
-  border: none; /* Supprimez la bordure par défaut du bouton */
+  cursor: pointer;
+  border: none;
 }
 
 .close-modal:hover {
-  color: #4285f4; /* Changez la couleur lors du survol pour plus de visibilité */
+  color: #4285f4;
 }
+

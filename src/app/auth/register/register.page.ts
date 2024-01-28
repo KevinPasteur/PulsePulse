@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { RegisterRequest } from 'src/app/security/register-request.model';
@@ -16,7 +16,11 @@ import { AuthService } from 'src/app/security/auth.service';
 export class RegisterPage implements OnInit {
   registerRequest: Partial<RegisterRequest> = {};
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastController: ToastController
+  ) {
     this.registerRequest = {};
   }
 
@@ -25,7 +29,6 @@ export class RegisterPage implements OnInit {
   ngOnInit() {}
 
   onSubmit(form: NgForm) {
-    // Do not do anything if the form is invalid.
     if (form.invalid) {
       return;
     }
@@ -33,15 +36,24 @@ export class RegisterPage implements OnInit {
     // Hide any previous login error.
     this.registerError = false;
 
-    // Perform the authentication request to the API.
-    // NOTE: Since our form is valid, it means that "this.authRequest" is actually
-    // a perfectly valid "AuthRequest" object, and that's what we are telling TypeScript
-    // here with "as AuthRequest".
     this.auth.register$(this.registerRequest as RegisterRequest).subscribe({
-      next: () => this.router.navigateByUrl('/login'),
-      error: (err) => {
+      next: async () => {
+        this.router.navigateByUrl('/login');
+        const toast = await this.toastController.create({
+          message: 'Vous vous êtes connecté avec succès !',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+      },
+      error: async (err) => {
         this.registerError = true;
-        console.warn(`Registration failed: ${err.message}`);
+        const toast = await this.toastController.create({
+          message: 'Échec de la connexion',
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
       },
     });
   }

@@ -77,7 +77,6 @@ export class AuthService {
     return this.http.post<RegisterResponse>(authUrl, registerRequest).pipe(
       map((register) => {
         this.#register$.next(register);
-        console.log(`User ${register.email} registered`);
         return register;
       })
     );
@@ -89,7 +88,6 @@ export class AuthService {
   logOut(): void {
     this.#auth$.next(undefined);
     this.storage.remove('auth');
-    console.log('User logged out');
   }
 
   /**

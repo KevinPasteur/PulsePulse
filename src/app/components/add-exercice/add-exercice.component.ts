@@ -37,7 +37,6 @@ export class AddExerciceComponent implements OnInit {
   ngOnInit() {
     this.exerciseService.exercises$.subscribe((exercises) => {
       this.exercises = exercises;
-      console.log(exercises);
       this.updateFilteredExercises();
     });
 
@@ -47,7 +46,7 @@ export class AddExerciceComponent implements OnInit {
         this.selectedExerciseIds = exercises.map(
           (exercise: any) => exercise.id
         );
-        console.log(this.selectedExerciseIds);
+
         this.updateFilteredExercises();
       });
 
@@ -73,7 +72,6 @@ export class AddExerciceComponent implements OnInit {
     const searchTerm = event.target.value.toLowerCase();
     if (searchTerm && searchTerm.trim() !== '') {
       this.filteredExercises = this.exercises.filter((exercise) => {
-        // Exclure les exercices déjà présents dans le workout
         return (
           !this.selectedExerciseIds.includes(exercise.id) &&
           exercise.name.toLowerCase().includes(searchTerm)

@@ -111,38 +111,38 @@ h2 {
 }
 
 .bodyPart-content {
-  display: flex;         /* Utilisez flexbox */
-  flex-wrap: wrap;       /* Permet aux éléments de passer à la ligne suivante si nécessaire */
-  justify-content: flex-start; /* Aligner les éléments au début du conteneur */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 10px;
 }
 
 .custom-add-button {
   padding: 0;
-  border: 2px solid #644AFF; /* or other color */
-  border-radius: 10px; /* Adjust for roundness */
-  color: #644AFF; /* Adjust text color as needed */
+  border: 2px solid #644AFF;
+  border-radius: 10px;
+  color: #644AFF;
   font-weight: bold;
   font-family: text;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px;
   cursor: pointer;
   margin-bottom: 1rem;
   height: 100px;
 
-  --background: transparent; /* Supprime le fond par défaut */
-  --background-focused: transparent; /* Supprime le fond lorsque le bouton est focus */
-  --background-hover: transparent; /* Supprime le fond au survol */
-  --background-activated: transparent; /* Supprime le fond lorsqu'il est activé/click */
-  text-decoration: none; /* Supprime le soulignement des liens */
+  --background: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  text-decoration: none;
 }
 
 .icon-holder {
-  background-color: #644AFF; /* Purple background */
-  border-radius: 15px; /* Circular shape */
+  background-color: #644AFF;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,13 +161,13 @@ h2 {
 
 .ion-icon-dots {
   margin: 0;
-  color: black; /* Icon color */
-  font-size: 20px; /* Icon size */
+  color: black;
+  font-size: 20px;
 }
 
 .custom-item {
-  --background: #DBE3FF; /* Adjust the color to match the image */
-  --border-radius: 10px; /* Rounded corners */
+  --background: #DBE3FF;
+  --border-radius: 10px;
   --padding-start: 0;
   --padding-end: 0;
   --inner-padding-end: 0;
@@ -175,9 +175,9 @@ h2 {
   overflow: hidden;
   margin-bottom: 1rem;
 
-  --min-height: 70px; /* Remplacez 70px par la hauteur que vous souhaitez */
-  --padding-top: 10px; /* Ajustez le padding supérieur selon vos besoins */
-  --padding-bottom: 10px; /* Ajustez le padding inférieur selon vos besoins */
+  --min-height: 70px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
 }
 
 .thumbnail-with-alert {
@@ -186,52 +186,52 @@ h2 {
 }
 
 .exercise-info {
-  padding-left: 10px; /* Space from the thumbnail */
+  padding-left: 10px;
 }
 
 .exercise-info h3 {
   margin: 0;
-  color: #000; /* Text color for the exercise name */
+  color: #000;
   font-size: 1.2em;
 }
 
 .exercise-info p {
   margin: 0;
-  color: #555; /* Text color for the repetitions */
+  color: #555;
 }
 
 .icon-col {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 10px; /* Space from the edge */
+  padding-right: 10px;
 }
 
 ion-icon {
-  font-size: 1.5em; /* Adjust icon size */
+  font-size: 1.5em;
 }
 
 .videoPlayer {
   border-radius: 10px;
-  width: 100%; /* Fait que la vidéo s'adapte à la largeur de son conteneur */
-  max-width: 100%; /* Empêche la vidéo de dépasser la largeur du conteneur */
-  height: auto; /* Maintient le ratio d'aspect de la vidéo */
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .exercise-alert {
-  background-color: rgb(124, 0, 128); // Couleur de l'alerte
-  color: white !important; // Couleur du texte
+  background-color: rgb(124, 0, 128);
+  color: white !important;
   padding: 2px 5px;
   border-radius: 5px;
   font-size: medium;
-  z-index: 10; // Assurez-vous qu'il apparaît par-dessus l'image
+  z-index: 10;
 }
 
 .thumbnail-with-alert {
   position: relative;
-  display: inline-block; // Assurez-vous que le thumbnail est traité comme un bloc inline
+  display: inline-block;
   img {
-    width: 100%; // Assurez-vous que l'image remplit le thumbnail
+    width: 100%;
     height: auto;
   }
 }

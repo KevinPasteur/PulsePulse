@@ -13,16 +13,13 @@
           <div slot="label">Nom du workout <ion-text color="danger">*</ion-text>
           </div>
         </ion-input>
-
         <ion-text color="danger" *ngIf="name.invalid && name.dirty && name.touched">Vous devez entrer un nom pour
           le workout.</ion-text>
       </ion-item>
-
       <ion-item lines="none">
         <ion-textarea name="description" #description="ngModel" [(ngModel)]="workout.description" label="Description"
           placeholder="Entrez une description"></ion-textarea>
       </ion-item>
-
       <ion-item lines="none">
         <ion-select required name="bodyPart" #bodyPart="ngModel" [(ngModel)]="workout.bodyPart"
           placeholder="Sélectionnez la zone">
@@ -40,7 +37,6 @@
       </ion-item>
       <br />
       <ion-item lines="none">
-
         <ion-radio-group value="start" #workoutIsPublic="ngModel" [(ngModel)]="workout.isPublic" name="isPublic">
           <div slot="label">Type de workout <ion-text color="danger">*</ion-text>
           </div>
@@ -49,13 +45,10 @@
           <ion-radio slot="end" labelPlacement="end" [value]="false">Privé
           </ion-radio>
         </ion-radio-group>
-
         <ion-text color="danger" *ngIf="workoutIsPublic.invalid && workoutIsPublic.dirty && workoutIsPublic.touched">
           Vous devez sélectionner un type</ion-text>
       </ion-item>
     </ion-list>
     <ion-button expand="block" [disabled]="workoutForm.invalid" type="submit">Modifier mon workout</ion-button>
   </form>
-
-
 </ion-content>

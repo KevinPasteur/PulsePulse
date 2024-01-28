@@ -1,18 +1,11 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
-  ChangeDetectorRef,
-  Input,
-} from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseService } from 'src/app/services/exercise.service';
-import { Exercise } from '../create-exercise/exercise.model';
+
 import { personCircle, square, mic, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { switchMap } from 'rxjs/operators';
@@ -51,7 +44,6 @@ export class UpdateExercisePage implements AfterViewInit {
     private route: ActivatedRoute,
     private exerciseService: ExerciseService,
     private router: Router,
-    private changeDetector: ChangeDetectorRef,
     private authService: AuthService,
     private toastController: ToastController
   ) {
@@ -64,10 +56,8 @@ export class UpdateExercisePage implements AfterViewInit {
         })
       )
       .subscribe((exercise) => {
-        console.log(exercise);
         this.exercise = exercise;
         if (this.exercise.duration) {
-          console.log('testdsdsd');
           this.exerciseType = 'duration';
           this.durationMinutes = Math.floor(this.exercise.duration / 60);
           this.durationSeconds = this.exercise.duration % 60;

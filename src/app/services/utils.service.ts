@@ -25,22 +25,17 @@ export class UtilsService {
       shoulders: 'assets/images/shoulders.png',
     };
 
-    // Vérifiez le type d'entrée
     if (typeof bodyParts === 'string') {
-      // Si c'est une chaîne simple, recherchez directement dans la table de correspondance
       return thumbnailUrls.hasOwnProperty(bodyParts)
         ? thumbnailUrls[bodyParts]
         : 'assets/images/default.png';
     } else if (Array.isArray(bodyParts)) {
-      // Si c'est un tableau, parcourez les zones et retournez la première URL trouvée dans la table de correspondance
       for (const bodyPart of bodyParts) {
         if (thumbnailUrls.hasOwnProperty(bodyPart)) {
           return thumbnailUrls[bodyPart];
         }
       }
     }
-
-    // Retournez une URL par défaut si aucune correspondance trouvée
     return 'assets/images/default.png';
   }
 

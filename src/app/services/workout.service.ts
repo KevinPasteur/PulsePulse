@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import {
-  Observable,
-  delayWhen,
-  map,
-  ReplaySubject,
-  of,
-  BehaviorSubject,
-} from 'rxjs';
+import { Observable, map, BehaviorSubject } from 'rxjs';
 
 import { Workout } from '../workouts/workout.model';
 import { WorkoutRequest } from '../workouts/workoutRequest.model';
@@ -68,7 +61,6 @@ export class WorkoutService {
     const authUrl = `${environment.apiUrl}/workouts/${workoutId}`;
     return this.http.put<WorkoutResponse>(authUrl, formData).pipe(
       map((workout) => {
-        console.log(workout);
         return workout.workouts;
       })
     );
@@ -88,9 +80,7 @@ export class WorkoutService {
       (data) => {
         this.updateWorkouts(data.workouts);
       },
-      (error) => {
-        console.error('Error fetching workouts:', error);
-      }
+      (error) => {}
     );
   }
 

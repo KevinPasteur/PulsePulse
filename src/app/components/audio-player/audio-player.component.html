@@ -1,6 +1,4 @@
 <div *ngIf="showPlayer" class="audio-controls">
-
-
   <div class="audio-player-container">
     <div class="close-container">
       <button (click)="closeAudioPlayer()" class="close-modal">
@@ -13,7 +11,6 @@
         <span class="audio-current-time">{{ formatTime(currentTime) }}</span>
         <input type="range" class="audio-progress" min="0" [max]="duration" [(ngModel)]="currentTime"
           (ngModelChange)="onSliderChange($event)">
-
         <span class="audio-duration">{{ formatTime(duration) }}</span>
         <ion-button (click)="togglePlay()" fill="clear">
           <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>

@@ -41,7 +41,7 @@ export class AudioService {
     });
 
     this.audio.addEventListener('ended', () => {
-      this.isPlaying.next(false); // Mettre à jour l'état de lecture
+      this.isPlaying.next(false);
     });
   }
 
@@ -74,7 +74,7 @@ export class AudioService {
   seekTo(time: number) {
     this.audio.currentTime = time;
     if (!this.isPlaying.getValue()) {
-      this.play(); // Lancer la lecture si elle est en pause
+      this.play();
     }
   }
 

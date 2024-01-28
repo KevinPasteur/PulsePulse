@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -44,7 +44,6 @@ export class WorkoutDetailPage implements ViewWillEnter {
   totalExercises: any[] = [];
   workout: any;
   averageLevel: string = '';
-  averageDuration: string = '';
   workoutId: any;
 
   @ViewChild('exerciseModal') exerciseModal: IonModal;
@@ -86,23 +85,7 @@ export class WorkoutDetailPage implements ViewWillEnter {
         this.workout = workout;
         this.exercisesFromAWorkout = exercises;
         this.averageLevel = this.calculateAverageLevel(exercises);
-        this.averageDuration = this.calculateTotalDuration(exercises);
       });
-  }
-
-  calculateTotalDuration(exercises: any) {
-    const totalSeconds = exercises.reduce(
-      (sum: number, exercise: Exercise) => sum + exercise.duration,
-      0
-    );
-
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-
-    console.log(
-      minutes > 0 ? `${minutes} min ${seconds} sec` : `${seconds} sec`
-    );
-    return minutes > 0 ? `${minutes} min ${seconds} sec` : `${seconds} sec`;
   }
 
   calculateAverageLevel(exercises: any) {
@@ -174,12 +157,10 @@ export class WorkoutDetailPage implements ViewWillEnter {
       .getExercisesFromAWorkout$(this.workoutId)
       .subscribe((exercises) => {
         this.exercisesFromAWorkout = exercises;
-        // Calculez à nouveau les statistiques moyennes si nécessaire
         this.averageLevel = this.calculateAverageLevel(exercises);
       });
   }
 
-  // Méthode pour afficher le toast de confirmation
   async presentConfirmationToast(exerciseName: any) {
     const toast = await this.toastController.create({
       message: `${exerciseName} a bien été ajouté à votre workout`,
