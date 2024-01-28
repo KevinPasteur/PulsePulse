@@ -1,0 +1,55 @@
+*{
+  font-family: "text";
+}
+
+.ion-padding {
+height: 100%;
+}
+@font-face {
+font-family: "bigTitle";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
+@font-face {
+font-family: "thirdTitle";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
+@font-face {
+font-family: "text";
+src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+  format("opentype");
+}
+
+ion-radio {
+  --color: #ddd;
+  --color-checked: #6815ec;
+  margin-right: 2rem;
+}
+
+ion-radio.ios::part(container) {
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid #ddd;
+  border-radius: 50%;
+}
+
+.radio-checked.ios::part(container) {
+  border-color: #6815ec;
+}
+
+.col-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+ion-button {
+  height: 48px;
+  font-family: "text";
+  margin-bottom: 2em;
+  margin-top: 2em;
+  --background: #644AFF;
+}
