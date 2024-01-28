@@ -2,6 +2,12 @@
   font-family: "text";
 }
 
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
 ion-back-button {
   height: auto;
   width: auto;
