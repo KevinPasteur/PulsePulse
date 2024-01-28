@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/library"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1>Modifier un workout</h1>
+  <form #workoutForm="ngForm" (submit)="onSubmit(workoutForm)">
+    <ion-list>
+      <ion-item lines="none">
+        <ion-input required name="name" #name="ngModel" [(ngModel)]="workout.name" placeholder="Entrez un nom">
+          <div slot="label">Nom du workout <ion-text color="danger">*</ion-text>
+          </div>
+        </ion-input>
+
+        <ion-text color="danger" *ngIf="name.invalid && name.dirty && name.touched">Vous devez entrer un nom pour
+          le workout.</ion-text>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-textarea name="description" #description="ngModel" [(ngModel)]="workout.description" label="Description"
+          placeholder="Entrez une description"></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-select required name="bodyPart" #bodyPart="ngModel" [(ngModel)]="workout.bodyPart"
+          placeholder="Sélectionnez la zone">
+          <ion-select-option value="arms">Bras</ion-select-option>
+          <ion-select-option value="legs">Jambes</ion-select-option>
+          <ion-select-option value="back">Dos</ion-select-option>
+          <ion-select-option value="abs">Abdos</ion-select-option>
+          <ion-select-option value="chest">Pecs</ion-select-option>
+          <ion-select-option value="shoulders">Épaules</ion-select-option>
+          <div slot="label">Zone ciblée <ion-text color="danger">*</ion-text>
+          </div>
+        </ion-select>
+        <ion-text color="danger" *ngIf="bodyPart.invalid && bodyPart.dirty && bodyPart.touched">Vous devez choisir une
+          zone.</ion-text>
+      </ion-item>
+      <br />
+      <ion-item lines="none">
+
+        <ion-radio-group value="start" #workoutIsPublic="ngModel" [(ngModel)]="workout.isPublic" name="isPublic">
+          <div slot="label">Type de workout <ion-text color="danger">*</ion-text>
+          </div>
+          <ion-radio slot="end" labelPlacement="end" [value]="true">Public
+          </ion-radio>
+          <ion-radio slot="end" labelPlacement="end" [value]="false">Privé
+          </ion-radio>
+        </ion-radio-group>
+
+        <ion-text color="danger" *ngIf="workoutIsPublic.invalid && workoutIsPublic.dirty && workoutIsPublic.touched">
+          Vous devez sélectionner un type</ion-text>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" [disabled]="workoutForm.invalid" type="submit">Modifier mon workout</ion-button>
+  </form>
+
+
+</ion-content>
