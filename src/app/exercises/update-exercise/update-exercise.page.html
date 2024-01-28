@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-toolbar>
       <ion-back-button slot="start" defaultHref="/library"></ion-back-button>
@@ -27,19 +27,6 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-radio-group value="start" #exerciseTypeGroup="ngModel" [(ngModel)]="exerciseType" name="exerciseType">
-          <ion-radio slot="end" labelPlacement="end" value="repetitions">Nb de répétitions
-          </ion-radio>
-          <ion-radio slot="end" labelPlacement="end" value="duration">Durée
-          </ion-radio>
-        </ion-radio-group>
-        <ion-text color="danger"
-          *ngIf="exerciseTypeGroup.invalid && exerciseTypeGroup.dirty && exerciseTypeGroup.touched">Vous devez
-          entrer un nombre de
-          séries</ion-text>
-      </ion-item>
-
-      <ion-item lines="none" *ngIf="exerciseType === 'repetitions'">
         <ion-input required #repetitions="ngModel" [(ngModel)]="exercise.repetitions" name="repetitions" type="number"
           placeholder="Entrez un nombre de répétitions">
           <div slot="label">Nombre de répétitions <ion-text color="danger">*</ion-text>
@@ -48,19 +35,6 @@
         <ion-text color="danger" *ngIf="repetitions.invalid && repetitions.dirty && repetitions.touched">Vous devez
           entrer un nombre de
           répétitions</ion-text>
-      </ion-item>
-
-      <ion-item lines="none" *ngIf="exerciseType === 'duration'">
-        <ion-select required name="exerciseMinutes" [(ngModel)]="durationMinutes" interface="popover">
-          <ion-select-option *ngFor="let minute of minutes">{{ minute }}</ion-select-option>
-          <div slot="label">Minutes <ion-text color="danger">*</ion-text>
-          </div>
-        </ion-select>
-        <ion-select required name="exerciseSeconds" [(ngModel)]="durationSeconds" interface="popover">
-          <ion-select-option *ngFor="let second of seconds">{{ second }}</ion-select-option>
-          <div slot="label">Secondes <ion-text color="danger">*</ion-text>
-          </div>
-        </ion-select>
       </ion-item>
 
       <ion-item lines="none">
@@ -76,9 +50,9 @@
       <ion-item lines="none">
         <ion-select required name="level" #level="ngModel" [(ngModel)]="exercise.level"
           placeholder="Sélectionnez un niveau">
-          <ion-select-option value="facile">Facile</ion-select-option>
-          <ion-select-option value="moyen">Moyen</ion-select-option>
-          <ion-select-option value="difficile">Difficile</ion-select-option>
+          <ion-select-option value="Facile">Facile</ion-select-option>
+          <ion-select-option value="Moyen">Moyen</ion-select-option>
+          <ion-select-option value="Difficile">Difficile</ion-select-option>
 
           <div slot="label">Niveau <ion-text color="danger">*</ion-text>
           </div>
@@ -90,11 +64,12 @@
       <ion-item lines="none">
         <ion-select required name="bodyPart" #bodyPart="ngModel" [(ngModel)]="exercise.bodyPart"
           placeholder="Sélectionnez le(s) zone(s)" [multiple]="true">
-          <ion-select-option value="pecs">Pecs</ion-select-option>
+          <ion-select-option value="chest">Pecs</ion-select-option>
           <ion-select-option value="shoulders">Epaules</ion-select-option>
           <ion-select-option value="biceps">Biceps</ion-select-option>
           <ion-select-option value="triceps">Triceps</ion-select-option>
           <ion-select-option value="forearms">Avant-bras</ion-select-option>
+          <ion-select-option value="abs">Abdos</ion-select-option>
           <ion-select-option value="traps">Trapèzes</ion-select-option>
           <ion-select-option value="back">Dos</ion-select-option>
           <ion-select-option value="lowerback">Bas du dos</ion-select-option>

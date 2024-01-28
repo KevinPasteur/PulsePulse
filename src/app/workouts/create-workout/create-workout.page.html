@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref="/library"></ion-back-button>
   </ion-toolbar>
@@ -26,18 +26,12 @@
       <ion-item lines="none">
         <ion-select required name="bodyPart" #bodyPart="ngModel" [(ngModel)]="workoutRequest.bodyPart"
           placeholder="Sélectionnez la zone">
-          <ion-select-option value="pecs">Pecs</ion-select-option>
-          <ion-select-option value="shoulders">Épaules</ion-select-option>
-          <ion-select-option value="biceps">Biceps</ion-select-option>
-          <ion-select-option value="triceps">Triceps</ion-select-option>
-          <ion-select-option value="forearms">Avant-bras</ion-select-option>
-          <ion-select-option value="traps">Trapèzes</ion-select-option>
+          <ion-select-option value="arms">Bras</ion-select-option>
+          <ion-select-option value="legs">Jambes</ion-select-option>
           <ion-select-option value="back">Dos</ion-select-option>
-          <ion-select-option value="lowerback">Bas du dos</ion-select-option>
-          <ion-select-option value="glutes">Fessiers</ion-select-option>
-          <ion-select-option value="quadriceps">Quadriceps</ion-select-option>
-          <ion-select-option value="hamstrings">Ischios-jambiers</ion-select-option>
-          <ion-select-option value="calves">Mollets</ion-select-option>
+          <ion-select-option value="abs">Abdos</ion-select-option>
+          <ion-select-option value="chest">Pecs</ion-select-option>
+          <ion-select-option value="shoulders">Épaules</ion-select-option>
           <div slot="label">Zone ciblée <ion-text color="danger">*</ion-text>
           </div>
         </ion-select>
@@ -60,8 +54,7 @@
           Vous devez sélectionner un type</ion-text>
       </ion-item>
     </ion-list>
-    <br />
-    <ion-button expand="block" [disabled]="workoutForm.invalid" type="submit">Créer mon workout</ion-button>
+    <ion-button expand="block" [disabled]="workoutForm.invalid" type="submit">Créer un workout</ion-button>
   </form>
 
 
