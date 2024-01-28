@@ -1,32 +1,119 @@
+*{
+  font-family: "text";
+}
+
+@font-face {
+  font-family: "bigTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "thirdTitle";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
+  @font-face {
+  font-family: "text";
+  src: url("../../../assets/fonts/poppins-cufonfonts/Poppins-Bold.ttf")
+    format("opentype");
+  }
+
 ion-modal {
-  --height: 50%;
+  --height: 95%;
+  --width: 95%;
   --border-radius: 16px;
   --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+  }
 
 ion-modal::part(backdrop) {
   background: rgba(209, 213, 219);
   opacity: 1;
 }
 
-ion-modal ion-toolbar {
-  --background: rgb(14 116 144);
-  --color: white;
+.exercise-title{
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
+ion-text {
+  font-weight: bold;
+  color : #644AFF;
+}
 
+ion-modal {
+  h3{
+    font-family: "thirdTitle";
+  }
+
+  ion-text {
+    font-weight: bold;
+    color : #644AFF;
+  }
+
+  ion-note {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color:#644AFF ;
+    color : white;
+  }
+
+  ion-content {
+    font-family: text;
+    --background: #DBE3FF;
+    --color: black;
+  }
+}
+
+.ion-chevron {
+  font-size: 20px;
+  color: #644AFF;
+}
+
+ion-label {
+  flex: 1;
+}
+
+p{
+  font-family: text;
+  font-weight: bold;
+  color: #644AFF;
+}
+
+h2 {
+  font-family: "bigTitle";
+  font-weight: bold;
+
+}
+
+.bodyPart-content {
+  display: flex;         /* Utilisez flexbox */
+  flex-wrap: wrap;       /* Permet aux éléments de passer à la ligne suivante si nécessaire */
+  justify-content: flex-start; /* Aligner les éléments au début du conteneur */
+  gap: 10px;
+}
 
 .custom-add-button {
-  border: 2px solid #d1d1d1; /* or other color */
+  padding: 0;
+  border: 2px solid #644AFF; /* or other color */
   border-radius: 10px; /* Adjust for roundness */
-  padding: 10px 20px;
-  font-size: 16px; /* Adjust as needed */
-  color: #555; /* Adjust text color as needed */
+  color: #644AFF; /* Adjust text color as needed */
+  font-weight: bold;
+  font-family: text;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  text-align: left;
   gap: 10px; /* Space between icon and text */
-  outline: none;
   cursor: pointer;
   margin-bottom: 1rem;
   height: 100px;
@@ -36,30 +123,36 @@ ion-modal ion-toolbar {
   --background-hover: transparent; /* Supprime le fond au survol */
   --background-activated: transparent; /* Supprime le fond lorsqu'il est activé/click */
   text-decoration: none; /* Supprime le soulignement des liens */
-  color: inherit; /* Utilise la couleur de texte héritée */
-
 }
 
 .icon-holder {
-  background-color: #7C4DFF; /* Purple background */
-  border-radius: 20px; /* Circular shape */
+  background-color: #644AFF; /* Purple background */
+  border-radius: 15px; /* Circular shape */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px; /* Icon container width */
-  height: 100px; /* Icon container height */
+  width: 90px;
+  height: 90px;
+  margin-right: 8px;
 }
 
-ion-icon {
-  color: white; /* Icon color */
+.icon-add{
+  border-radius: 50%;
+  padding: 0.2rem;
+  font-size: 2rem;
+  color: #644AFF;
+  background-color: white;
+}
+
+.ion-icon-dots {
+  margin: 0;
+  color: black; /* Icon color */
   font-size: 20px; /* Icon size */
 }
 
-
-
 .custom-item {
-  --background: #E0E0FF; /* Adjust the color to match the image */
-  --border-radius: 20px; /* Rounded corners */
+  --background: #DBE3FF; /* Adjust the color to match the image */
+  --border-radius: 10px; /* Rounded corners */
   --padding-start: 0;
   --padding-end: 0;
   --inner-padding-end: 0;
@@ -101,4 +194,33 @@ ion-icon {
 
 ion-icon {
   font-size: 1.5em; /* Adjust icon size */
+}
+
+.videoPlayer {
+  border-radius: 10px;
+  width: 100%; /* Fait que la vidéo s'adapte à la largeur de son conteneur */
+  max-width: 100%; /* Empêche la vidéo de dépasser la largeur du conteneur */
+  height: auto; /* Maintient le ratio d'aspect de la vidéo */
+}
+
+.thumbnail-with-alert {
+  position: relative;
+  display: inline-block; // Assurez-vous que le thumbnail est traité comme un bloc inline
+
+  .exercise-alert {
+    position: absolute;
+    top: 6px;  // Ajustez selon votre besoin
+    left: 6px; // Ajustez selon votre besoin
+    background-color: rgb(124, 0, 128); // Couleur de l'alerte
+    color: white; // Couleur du texte
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: medium;
+    z-index: 10; // Assurez-vous qu'il apparaît par-dessus l'image
+  }
+
+  img {
+    width: 100%; // Assurez-vous que l'image remplit le thumbnail
+    height: auto;
+  }
 }
