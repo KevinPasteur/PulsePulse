@@ -67,7 +67,6 @@ export class AuthService {
       delayWhen((auth) => this.#saveAuth$(auth)),
       map((auth) => {
         this.#auth$.next(auth);
-        console.log(`User ${auth.user.email} logged in`);
         return auth.user;
       })
     );

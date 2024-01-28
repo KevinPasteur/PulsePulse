@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
@@ -17,16 +17,24 @@ import { User } from 'src/app/security/user.model';
 })
 export class ProfilePage {
   user: any;
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastController: ToastController
+  ) {
     this.auth.getUser$().subscribe((user) => {
       this.user = user;
-      console.log(this.user);
     });
   }
 
-  logOut() {
-    console.log('logging out...');
+  async logOut() {
     this.auth.logOut();
     this.router.navigateByUrl('/login');
+    const toast = await this.toastController.create({
+      message: 'Vous vous êtes déconnecté avec succès !',
+      duration: 2000,
+      color: 'success',
+    });
+    toast.present();
   }
 }
