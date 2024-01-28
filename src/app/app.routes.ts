@@ -15,7 +15,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./layout/layout.page').then((m) => m.LayoutPage),
-    // canActivate: [onlyAuthenticated],
+    canActivate: [onlyAuthenticated],
     children: [
       {
         path: 'library',
@@ -33,6 +33,7 @@ export const routes: Routes = [
     path: 'profile',
     loadComponent: () =>
       import('./profile/profile/profile.page').then((m) => m.ProfilePage),
+    canActivate: [onlyAuthenticated],
   },
   {
     path: 'create-exercise',
@@ -40,6 +41,7 @@ export const routes: Routes = [
       import('./exercises/create-exercise/create-exercise.page').then(
         (m) => m.CreateExercisePage
       ),
+    canActivate: [onlyAuthenticated],
   },
   {
     path: 'register',
@@ -52,6 +54,7 @@ export const routes: Routes = [
       import('./layout/workout-detail/workout-detail.page').then(
         (m) => m.WorkoutDetailPage
       ),
+    canActivate: [onlyAuthenticated],
   },
   {
     path: 'update-exercise/:id',
@@ -59,14 +62,28 @@ export const routes: Routes = [
       import('./exercises/update-exercise/update-exercise.page').then(
         (m) => m.UpdateExercisePage
       ),
+    canActivate: [onlyAuthenticated],
   },
   {
     path: 'community',
     loadComponent: () =>
       import('./layout/community/community.page').then((m) => m.CommunityPage),
-  },  {
-    path: 'create-workout',
-    loadComponent: () => import('./workouts/create-workout/create-workout.page').then( m => m.CreateWorkoutPage)
+    canActivate: [onlyAuthenticated],
   },
-
+  {
+    path: 'create-workout',
+    loadComponent: () =>
+      import('./workouts/create-workout/create-workout.page').then(
+        (m) => m.CreateWorkoutPage
+      ),
+    canActivate: [onlyAuthenticated],
+  },
+  {
+    path: 'update-workout/:id',
+    loadComponent: () =>
+      import('./workouts/update-workout/update-workout.page').then(
+        (m) => m.UpdateWorkoutPage
+      ),
+    canActivate: [onlyAuthenticated],
+  },
 ];
